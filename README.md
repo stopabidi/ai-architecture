@@ -31,7 +31,7 @@
 │  │  └──────────┘ └─────────┘  │              │                 │
 │  └────────────────────────────┼──────────────┘                 │
 │                               │                                │
-│                  Tailscale 100.68.22.105                        │
+│                         Tailscale                              │
 └───────────────────────────────┼────────────────────────────────┘
                                 │
 ┌───────────────────────────────┼────────────────────────────────┐
@@ -86,6 +86,6 @@
 | **Assistant** | Gina Profile | Briefings, summaries |
 
 ## Connectivity
-- **Tailscale** mesh VPN across all nodes (Frankenstein: `100.68.22.105`)
+- **Tailscale** mesh VPN across all nodes
 - SSH both directions
 - Phone and other devices access self-hosted services over the tailnet

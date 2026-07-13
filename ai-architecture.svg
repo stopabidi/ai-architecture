@@ -109,7 +109,7 @@
 
   <!-- Tailscale badge -->
   <rect x="40" y="525" width="600" height="44" rx="8" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="55" y="546" fill="#58a6ff" font-size="13" font-weight="bold">Tailscale  —  100.68.22.105</text>
+  <text x="55" y="546" fill="#58a6ff" font-size="13" font-weight="bold">Tailscale  (mesh VPN)</text>
   <text x="55" y="562" fill="#8b949e" font-size="10">Mesh VPN · Port forwarding · Access from anywhere on the tailnet</text>
 
   <!-- Arrow: Frankenstein → Tailnet -->
