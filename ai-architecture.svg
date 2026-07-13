@@ -1,202 +1,276 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 900" font-family="'SF Mono','JetBrains Mono','Fira Code',monospace">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0d1117"/>
-      <stop offset="100%" stop-color="#161b22"/>
+    <!-- Background gradient -->
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1a1b2e"/>
+      <stop offset="100%" stop-color="#0a0b14"/>
+    </radialGradient>
+
+    <!-- Machine gradients -->
+    <linearGradient id="mach-franken" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2b2d4a"/>
+      <stop offset="100%" stop-color="#1e2038"/>
     </linearGradient>
-    <linearGradient id="grad-franken" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1f6feb"/>
-      <stop offset="100%" stop-color="#58a6ff"/>
-    </linearGradient>
-    <linearGradient id="grad-tim" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#9e6a03"/>
-      <stop offset="100%" stop-color="#d29922"/>
-    </linearGradient>
-    <linearGradient id="grad-agent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
-    </linearGradient>
-    <linearGradient id="grad-llm" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#238636"/>
-      <stop offset="100%" stop-color="#2ea043"/>
-    </linearGradient>
-    <linearGradient id="grad-service" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#9e6a03"/>
-      <stop offset="100%" stop-color="#d29922"/>
-    </linearGradient>
-    <linearGradient id="grad-selfhost" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#da3633"/>
-      <stop offset="100%" stop-color="#f85149"/>
+    <linearGradient id="mach-tim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2d2633"/>
+      <stop offset="100%" stop-color="#1e1825"/>
     </linearGradient>
 
+    <!-- Service gradients -->
+    <linearGradient id="sg-llm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="sg-agent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="sg-db" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="sg-self" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <linearGradient id="sg-worker" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="sg-phone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="sg-timagent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#9333ea"/>
+    </linearGradient>
+
+    <!-- Filter -->
     <filter id="glow">
-      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#58a6ff" flood-opacity="0.3"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#6366f1" flood-opacity="0.15"/>
+    </filter>
+    <filter id="card">
+      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
     </filter>
 
-    <marker id="arrow-down" markerWidth="10" markerHeight="8" refX="5" refY="8" orient="auto">
-      <path d="M0,0 L5,8 L10,0" fill="#58a6ff"/>
+    <!-- Arrow markers -->
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#4f46e5"/>
     </marker>
-    <marker id="arrow-up" markerWidth="10" markerHeight="8" refX="5" refY="0" orient="auto">
-      <path d="M0,8 L5,0 L10,8" fill="#8b949e"/>
+    <marker id="arrow-down" markerWidth="8" markerHeight="6" refX="4" refY="6" orient="auto">
+      <path d="M0,0 L4,6 L8,0" fill="#4f46e5"/>
     </marker>
   </defs>
 
   <!-- Background -->
-  <rect width="1000" height="900" fill="url(#bg)" rx="12"/>
+  <rect width="1200" height="700" fill="url(#bg)" rx="16"/>
+
+  <!-- Subtle grid dots -->
+  <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+    <circle cx="10" cy="10" r="0.5" fill="#ffffff" opacity="0.03"/>
+  </pattern>
+  <rect width="1200" height="700" fill="url(#dots)" rx="16"/>
+
+  <!-- Title bar -->
+  <rect x="30" y="20" width="1140" height="50" rx="10" fill="#ffffff" opacity="0.03"/>
+  <text x="600" y="52" text-anchor="middle" fill="#e2e8f0" font-size="16" font-weight="600" letter-spacing="1">AI System Architecture</text>
+
+  <!-- ==================== MACHINE 1: FRANKENSTEIN ==================== -->
+  <rect x="30" y="85" width="820" height="480" rx="14" fill="url(#mach-franken)" stroke="#2d2f52" stroke-width="1.5" filter="url(#card)"/>
   
-  <!-- Title -->
-  <text x="500" y="38" text-anchor="middle" fill="#e6edf3" font-size="20" font-weight="bold" font-family="-apple-system,sans-serif">AI Architecture</text>
-  <line x1="200" y1="50" x2="800" y2="50" stroke="#30363d" stroke-width="1"/>
+  <!-- Machine header -->
+  <rect x="30" y="85" width="820" height="44" rx="14" fill="#6366f1" opacity="0.12"/>
+  <rect x="30" y="115" width="820" height="14" fill="#6366f1" opacity="0.12"/>
+  <text x="60" y="114" fill="#c7d2fe" font-size="13" font-weight="600" letter-spacing="0.5">FRANKENSTEIN</text>
+  <text x="520" y="114" fill="#64748b" font-size="10">7800X3D · RTX 5070Ti 16GB · DDR5 32GB · Ubuntu</text>
 
-  <!-- ====== FRANKENSTEIN ====== -->
-  <rect x="20" y="70" width="640" height="750" rx="10" fill="#161b22" stroke="#1f6feb" stroke-width="2" opacity="0.98"/>
-  <rect x="20" y="70" width="640" height="36" rx="10" fill="url(#grad-franken)" opacity="0.9"/>
-  <rect x="20" y="96" width="640" height="10" fill="url(#grad-franken)" opacity="0.9"/>
-  <text x="40" y="94" fill="#fff" font-size="15" font-weight="bold">Frankenstein</text>
-  <text x="340" y="94" fill="#b9d6ff" font-size="11">7800X3D · RTX 5070Ti · DDR5 32GB · Ubuntu</text>
+  <!-- Row 1: Inference -->
+  <text x="55" y="152" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">INFERENCE</text>
+  <line x1="55" y1="156" x2="160" y2="156" stroke="#2d2f52" stroke-width="1"/>
 
-  <!-- Machine Zone: Inference -->
-  <text x="40" y="130" fill="#8b949e" font-size="11" font-weight="bold">▸ Inference</text>
+  <rect x="50" y="164" width="375" height="62" rx="10" fill="url(#sg-llm)" filter="url(#glow)"/>
+  <text x="70" y="188" fill="#fff" font-size="14" font-weight="700">llama-server</text>
+  <circle cx="230" cy="183" r="3" fill="#a5b4fc"/>
+  <text x="240" y="188" fill="#c7d2fe" font-size="11">:8888</text>
+  <text x="70" y="206" fill="#a5b4fc" font-size="10">Qwen3.6-35B-A3B · 123 tok/s · Qwen3.5-9B Vision</text>
+  <text x="70" y="218" fill="#818cf8" font-size="9">Q4_K_M · NVMe /mnt/models</text>
 
-  <rect x="40" y="142" width="600" height="60" rx="8" fill="url(#grad-llm)" filter="url(#glow)"/>
-  <text x="55" y="164" fill="#fff" font-size="14" font-weight="bold">llama-server :8888</text>
-  <text x="55" y="182" fill="#b5f0c5" font-size="11">Qwen3.6-35B-A3B · Q4_K_M · ~123 tok/s</text>
-  <text x="55" y="196" fill="#b5f0c5" font-size="11">Qwen3.5-9B-UD + mmproj-F16 (Vision)</text>
+  <rect x="445" y="164" width="385" height="62" rx="10" fill="url(#sg-db)" filter="url(#card)"/>
+  <text x="465" y="188" fill="#fff" font-size="14" font-weight="700">ChromaDB</text>
+  <circle cx="555" cy="183" r="3" fill="#c4b5fd"/>
+  <text x="565" y="188" fill="#c4b5fd" font-size="11">:8100</text>
+  <text x="465" y="206" fill="#c4b5fd" font-size="10">Vector store · Embeddings · Semantic retrieval</text>
+  <text x="465" y="218" fill="#a78bfa" font-size="9">Document chunks for RAG</text>
 
-  <!-- Machine Zone: Agents -->
-  <text x="40" y="230" fill="#8b949e" font-size="11" font-weight="bold">▸ Agent Layer</text>
+  <!-- Row 2: Agents -->
+  <text x="55" y="256" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">AUTONOMOUS AGENTS</text>
+  <line x1="55" y1="260" x2="200" y2="260" stroke="#2d2f52" stroke-width="1"/>
 
-  <rect x="40" y="242" width="285" height="48" rx="7" fill="url(#grad-agent)"/>
-  <text x="55" y="262" fill="#fff" font-size="13" font-weight="bold">Hermes  ◈ Orchestrator</text>
-  <text x="55" y="279" fill="#ddd6fe" font-size="10">DeepSeek V4 Pro · Decomposes · Links · Reviews</text>
+  <rect x="50" y="268" width="185" height="48" rx="8" fill="url(#sg-agent)" filter="url(#card)"/>
+  <text x="70" y="288" fill="#fff" font-size="12" font-weight="700">Hermes</text>
+  <text x="70" y="304" fill="#67e8f9" font-size="9">Orchestrator · DeepSeek V4 Pro</text>
 
-  <rect x="355" y="242" width="285" height="48" rx="7" fill="#21262d" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="370" y="262" fill="#a78bfa" font-size="13" font-weight="bold">Kanban Board  ⚡</text>
-  <text x="370" y="279" fill="#8b949e" font-size="10">SQLite · Multi-agent work queue</text>
+  <rect x="250" y="268" width="145" height="48" rx="8" fill="url(#sg-worker)" filter="url(#card)"/>
+  <text x="270" y="288" fill="#fff" font-size="12" font-weight="700">Frankie</text>
+  <text x="270" y="304" fill="#a7f3d0" font-size="9">Worker · DeepSeek V4 Flash</text>
 
-  <rect x="40" y="300" width="185" height="48" rx="7" fill="#21262d" stroke="#d29922" stroke-width="1"/>
-  <text x="55" y="320" fill="#d29922" font-size="13" font-weight="bold">Frankie  ◈ Worker</text>
-  <text x="55" y="337" fill="#8b949e" font-size="10">DeepSeek V4 Flash</text>
+  <rect x="410" y="268" width="145" height="48" rx="8" fill="url(#sg-worker)" filter="url(#card)"/>
+  <text x="430" y="288" fill="#fff" font-size="12" font-weight="700">Helios</text>
+  <text x="430" y="304" fill="#a7f3d0" font-size="9">Analyst · DeepSeek V4 Pro</text>
 
-  <rect x="240" y="300" width="185" height="48" rx="7" fill="#21262d" stroke="#d29922" stroke-width="1"/>
-  <text x="255" y="320" fill="#d29922" font-size="13" font-weight="bold">Helios  ◈ Analyst</text>
-  <text x="255" y="337" fill="#8b949e" font-size="10">DeepSeek V4 Pro · Checkpoint</text>
+  <rect x="570" y="268" width="130" height="48" rx="8" fill="#1e1b4b" stroke="#6366f1" stroke-width="1" filter="url(#card)"/>
+  <text x="590" y="288" fill="#a5b4fc" font-size="12" font-weight="700">OpenCode</text>
+  <text x="590" y="304" fill="#818cf8" font-size="9">Coder · Qwen 35B</text>
 
-  <rect x="440" y="300" width="200" height="48" rx="7" fill="#21262d" stroke="#58a6ff" stroke-width="1"/>
-  <text x="455" y="320" fill="#58a6ff" font-size="13" font-weight="bold">OpenCode ◈ Coder</text>
-  <text x="455" y="337" fill="#8b949e" font-size="10">Qwen 35B A3B (local)</text>
+  <!-- Row 3: Orchestration + AI Workspace -->
+  <text x="55" y="348" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">ORCHESTRATION &amp; AI</text>
+  <line x1="55" y1="352" x2="215" y2="352" stroke="#2d2f52" stroke-width="1"/>
 
-  <!-- ChromaDB -->
-  <rect x="40" y="365" width="300" height="48" rx="7" fill="#21262d" stroke="#a78bfa" stroke-width="1.5"/>
-  <text x="55" y="385" fill="#a78bfa" font-size="13" font-weight="bold">ChromaDB  ◆  Vector Store</text>
-  <text x="55" y="402" fill="#8b949e" font-size="10">Document chunks · Embeddings · Semantic retrieval</text>
+  <rect x="50" y="360" width="280" height="56" rx="8" fill="#1e1b4b" stroke="#818cf8" stroke-width="1" filter="url(#card)"/>
+  <text x="70" y="382" fill="#a5b4fc" font-size="13" font-weight="700">Kanban Board</text>
+  <text x="70" y="400" fill="#64748b" font-size="9">SQLite multi-agent queue · Dependency chaining</text>
+  <text x="240" y="400" fill="#818cf8" font-size="9">Dispatcher → Workers</text>
 
-  <!-- Odysseus -->
-  <rect x="355" y="365" width="285" height="48" rx="7" fill="#21262d" stroke="#8b5cf6" stroke-width="1"/>
-  <text x="370" y="385" fill="#8b5cf6" font-size="13" font-weight="bold">Odysseus</text>
-  <text x="370" y="402" fill="#8b949e" font-size="10">OpenWebUI · n8n workflow automation</text>
+  <rect x="350" y="360" width="240" height="56" rx="8" fill="#2d1b69" stroke="#8b5cf6" stroke-width="1" filter="url(#card)"/>
+  <text x="370" y="382" fill="#c4b5fd" font-size="13" font-weight="700">Odysseus</text>
+  <text x="370" y="400" fill="#64748b" font-size="9">OpenWebUI · n8n automation</text>
+  <circle cx="475" cy="382" r="3" fill="#8b5cf6"/>
 
-  <!-- Machine Zone: Self-Hosted -->
-  <text x="40" y="440" fill="#8b949e" font-size="11" font-weight="bold">▸ Self-Hosted Services</text>
+  <rect x="610" y="360" width="220" height="56" rx="8" fill="#262626" stroke="#525252" stroke-width="1" filter="url(#card)"/>
+  <text x="630" y="382" fill="#d4d4d4" font-size="13" font-weight="700">Pandora MCP</text>
+  <text x="630" y="400" fill="#64748b" font-size="9">Shared tools for Hermes</text>
+  <circle cx="750" cy="382" r="3" fill="#a3a3a3"/>
 
-  <rect x="40" y="452" width="285" height="55" rx="7" fill="url(#grad-selfhost)"/>
-  <text x="55" y="474" fill="#fff" font-size="13" font-weight="bold">Nextcloud  :8081</text>
-  <text x="55" y="492" fill="#fbbfb9" font-size="10">File sync · CalDAV · CardDAV</text>
+  <!-- Row 4: Self-Hosted Services -->
+  <text x="55" y="448" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">SELF-HOSTED</text>
+  <line x1="55" y1="452" x2="150" y2="452" stroke="#2d2f52" stroke-width="1"/>
 
-  <rect x="355" y="452" width="285" height="55" rx="7" fill="#21262d" stroke="#f85149" stroke-width="1.5" stroke-dasharray="5,3"/>
-  <text x="370" y="474" fill="#f85149" font-size="13" font-weight="bold">Immich  (planned)</text>
-  <text x="370" y="492" fill="#8b949e" font-size="10">Photo/video management · Self-hosted</text>
+  <rect x="50" y="460" width="240" height="50" rx="8" fill="url(#sg-self)" filter="url(#card)"/>
+  <text x="70" y="482" fill="#fff" font-size="13" font-weight="700">Nextcloud</text>
+  <circle cx="155" cy="478" r="3" fill="#fde68a"/>
+  <text x="165" y="483" fill="#fde68a" font-size="11">:8081</text>
+  <text x="70" y="500" fill="#fef3c7" font-size="9">File sync · CalDAV · CardDAV</text>
 
-  <!-- Tailscale badge -->
-  <rect x="40" y="525" width="600" height="44" rx="8" fill="#21262d" stroke="#58a6ff" stroke-width="1.5"/>
-  <text x="55" y="546" fill="#58a6ff" font-size="13" font-weight="bold">Tailscale  (mesh VPN)</text>
-  <text x="55" y="562" fill="#8b949e" font-size="10">Mesh VPN · Port forwarding · Access from anywhere on the tailnet</text>
+  <rect x="310" y="460" width="240" height="50" rx="8" fill="#27272a" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="5,3" filter="url(#card)"/>
+  <text x="330" y="482" fill="#fbbf24" font-size="13" font-weight="700">Immich</text>
+  <text x="330" y="500" fill="#64748b" font-size="9">Photo/video · Coming soon</text>
 
-  <!-- Arrow: Frankenstein → Tailnet -->
-  <line x1="340" y1="569" x2="340" y2="610" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrow-down)"/>
+  <rect x="570" y="460" width="260" height="50" rx="8" fill="#0f172a" stroke="#6366f1" stroke-width="1" filter="url(#card)"/>
+  <text x="590" y="482" fill="#a5b4fc" font-size="12" font-weight="500">Storage:</text>
+  <text x="590" y="500" fill="#64748b" font-size="9">NVMe /mnt (label AI) · All models here</text>
 
-  <!-- ====== TAILNET ZONE ====== -->
-  <rect x="40" y="615" width="600" height="36" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1" stroke-dasharray="4,3"/>
-  <text x="340" y="639" text-anchor="middle" fill="#8b949e" font-size="12">════ Tailscale Tailnet ═══╕</text>
+  <!-- ==================== TAILSCALE CONNECTOR ==================== -->
+  <rect x="440" y="575" width="220" height="32" rx="16" fill="#1e1b4b" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="550" y="596" text-anchor="middle" fill="#818cf8" font-size="12" font-weight="600">⬡  Tailscale</text>
 
-  <!-- Arrows from tailnet to devices -->
-  <line x1="220" y1="651" x2="60" y2="690" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrow-down)"/>
-  <line x1="340" y1="651" x2="340" y2="690" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrow-down)"/>
-  <line x1="460" y1="651" x2="620" y2="690" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrow-down)"/>
+  <!-- Arrow down -->
+  <line x1="550" y1="607" x2="550" y2="625" stroke="#4f46e5" stroke-width="1.5" marker-end="url(#arrow-down)"/>
 
-  <!-- ====== TIM ====== -->
-  <rect x="20" y="700" width="280" height="120" rx="10" fill="#161b22" stroke="#d29922" stroke-width="2"/>
-  <rect x="20" y="700" width="280" height="34" rx="10" fill="url(#grad-tim)" opacity="0.9"/>
-  <rect x="20" y="724" width="280" height="10" fill="url(#grad-tim)" opacity="0.9"/>
-  <text x="40" y="723" fill="#fff" font-size="14" font-weight="bold">Tim</text>
-  <text x="160" y="723" fill="#f0e6c0" font-size="10">MacBook Air M2 · 16GB</text>
+  <!-- Dotted line to left/right devices -->
+  <line x1="550" y1="635" x2="200" y2="635" stroke="#2d2f52" stroke-width="1" stroke-dasharray="4,4"/>
+  <line x1="550" y1="635" x2="1050" y2="635" stroke="#2d2f52" stroke-width="1" stroke-dasharray="4,4"/>
 
-  <rect x="40" y="746" width="240" height="34" rx="6" fill="url(#grad-agent)"/>
-  <text x="55" y="763" fill="#fff" font-size="11" font-weight="bold">AgentTim</text>
-  <text x="55" y="776" fill="#ddd6fe" font-size="9">DeepSeek V4 Flash</text>
+  <!-- ==================== MACHINE 2: TIM ==================== -->
+  <rect x="30" y="615" width="375" height="68" rx="12" fill="url(#mach-tim)" stroke="#3b2d4f" stroke-width="1.5" filter="url(#card)"/>
+  <text x="55" y="640" fill="#e2e8f0" font-size="12" font-weight="600">Tim</text>
+  <text x="220" y="640" fill="#64748b" font-size="9">MacBook Air M2 · 16GB · macOS</text>
 
-  <rect x="40" y="786" width="240" height="28" rx="6" fill="#21262d" stroke="#a78bfa" stroke-width="1"/>
-  <text x="55" y="804" fill="#a78bfa" font-size="10">Gina Profile — Briefings, Summaries</text>
+  <rect x="50" y="652" width="165" height="22" rx="6" fill="url(#sg-timagent)" filter="url(#card)"/>
+  <text x="60" y="667" fill="#eae8fd" font-size="10" font-weight="600">AgentTim</text>
+  <text x="120" y="667" fill="#c4b5fd" font-size="8">DeepSeek V4 Flash</text>
 
-  <!-- ====== PHONE ====== -->
-  <rect x="360" y="700" width="280" height="120" rx="10" fill="#161b22" stroke="#2ea043" stroke-width="2"/>
-  <rect x="360" y="700" width="280" height="34" rx="10" fill="url(#grad-llm)" opacity="0.9"/>
-  <rect x="360" y="724" width="280" height="10" fill="url(#grad-llm)" opacity="0.9"/>
-  <text x="380" y="723" fill="#fff" font-size="14" font-weight="bold">Phone</text>
-  <text x="470" y="723" fill="#b5f0c5" font-size="10">Android / iPhone</text>
+  <rect x="225" y="652" width="165" height="22" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="0.8"/>
+  <text x="235" y="667" fill="#c4b5fd" font-size="10" font-weight="500">Gina Profile</text>
+  <text x="310" y="667" fill="#64748b" font-size="8">Briefings · Summaries</text>
 
-  <rect x="380" y="746" width="240" height="34" rx="6" fill="#21262d" stroke="#2ea043" stroke-width="1.5"/>
-  <text x="395" y="763" fill="#2ea043" font-size="11" font-weight="bold">Tailscale App</text>
-  <text x="395" y="776" fill="#8b949e" font-size="9">Access self-hosted services</text>
+  <!-- Arrow: Tailscale to Tim -->
+  <line x1="200" y1="635" x2="200" y2="615" stroke="#4f46e5" stroke-width="1.5"/>
 
-  <rect x="380" y="786" width="240" height="28" rx="6" fill="#21262d" stroke="#8b5cf6" stroke-width="1"/>
-  <text x="395" y="804" fill="#8b5cf6" font-size="10">Nextcloud · Odysseus · Immich</text>
+  <!-- ==================== PHONE ==================== -->
+  <rect x="820" y="615" width="350" height="68" rx="12" fill="#170f13" stroke="#be185d" stroke-width="1.5" filter="url(#card)"/>
+  <text x="845" y="640" fill="#e2e8f0" font-size="12" font-weight="600">Phone</text>
+  <text x="1000" y="640" fill="#64748b" font-size="9">via Tailscale app</text>
 
-  <!-- ====== RIGHT SIDE: DETAILS ====== -->
-  <text x="700" y="88" fill="#e6edf3" font-size="14" font-weight="bold">▸ What runs where</text>
+  <rect x="840" y="652" width="310" height="22" rx="6" fill="url(#sg-phone)" filter="url(#card)"/>
+  <text x="850" y="667" fill="#fff" font-size="10" font-weight="600">Access to all self-hosted services</text>
+  <text x="995" y="667" fill="#fbcfe8" font-size="9">Nextcloud · Odysseus · Immich</text>
 
-  <rect x="700" y="105" width="270" height="26" rx="5" fill="#1f6feb" opacity="0.3"/>
-  <text x="710" y="123" fill="#58a6ff" font-size="12" font-weight="bold">Frankenstein</text>
+  <!-- Arrow: Tailscale to Phone -->
+  <line x1="1050" y1="635" x2="1050" y2="615" stroke="#4f46e5" stroke-width="1.5"/>
 
-  <text x="710" y="148" fill="#8b949e" font-size="11">🐧  llama-server (Qwen models)</text>
-  <text x="710" y="168" fill="#8b949e" font-size="11">🐧  ChromaDB vector store</text>
-  <text x="710" y="188" fill="#8b949e" font-size="11">🐧  Hermes / Frankie / Helios</text>
-  <text x="710" y="208" fill="#8b949e" font-size="11">🐧  OpenCode · Kanban Board</text>
-  <text x="710" y="228" fill="#8b949e" font-size="11">🐧  Odysseus (OUI + n8n)</text>
-  <text x="710" y="248" fill="#8b949e" font-size="11">🐧  Nextcloud · Immich</text>
+  <!-- ==================== SIDE PANEL ==================== -->
+  <rect x="870" y="85" width="300" height="480" rx="14" fill="#0f1120" stroke="#1e2038" stroke-width="1" filter="url(#card)"/>
 
-  <rect x="700" y="275" width="270" height="26" rx="5" fill="#d29922" opacity="0.3"/>
-  <text x="710" y="293" fill="#d29922" font-size="12" font-weight="bold">Tim</text>
+  <!-- Ports -->
+  <text x="890" y="120" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">PORTS</text>
+  <line x1="890" y1="124" x2="940" y2="124" stroke="#1e2038" stroke-width="1"/>
 
-  <text x="710" y="318" fill="#8b949e" font-size="11">🍎  AgentTim (remote LLM)</text>
-  <text x="710" y="338" fill="#8b949e" font-size="11">🍎  Gina profile</text>
-  <text x="710" y="358" fill="#8b949e" font-size="11">🍎  SSH → Frankenstein</text>
+  <g font-size="10">
+    <rect x="890" y="135" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="150" fill="#a5b4fc" font-weight="600">:8888</text>
+    <text x="950" y="150" fill="#94a3b8">llama-server</text>
 
-  <rect x="700" y="385" width="270" height="26" rx="5" fill="#2ea043" opacity="0.3"/>
-  <text x="710" y="403" fill="#2ea043" font-size="12" font-weight="bold">Phone</text>
+    <rect x="890" y="162" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="177" fill="#a5b4fc" font-weight="600">:7000</text>
+    <text x="950" y="177" fill="#94a3b8">Odysseus</text>
 
-  <text x="710" y="428" fill="#8b949e" font-size="11">📱  Tailscale → all services</text>
-  <text x="710" y="448" fill="#8b949e" font-size="11">📱  Odysseus WebUI</text>
-  <text x="710" y="468" fill="#8b949e" font-size="11">📱  Nextcloud sync</text>
+    <rect x="890" y="189" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="204" fill="#a5b4fc" font-weight="600">:8081</text>
+    <text x="950" y="204" fill="#94a3b8">Nextcloud</text>
 
-  <text x="700" y="510" fill="#e6edf3" font-size="14" font-weight="bold">▸ Key Ports</text>
+    <rect x="890" y="216" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="231" fill="#a5b4fc" font-weight="600">:8100</text>
+    <text x="950" y="231" fill="#94a3b8">ChromaDB</text>
 
-  <rect x="700" y="525" width="270" height="160" rx="6" fill="#21262d" stroke="#30363d"/>
-  <text x="715" y="548" fill="#e6edf3" font-size="11">:8888  llama-server</text>
-  <text x="715" y="568" fill="#8b949e" font-size="11">:7000  Odysseus</text>
-  <text x="715" y="588" fill="#8b949e" font-size="11">:8081  Nextcloud</text>
-  <text x="715" y="608" fill="#8b949e" font-size="11">:8100  ChromaDB</text>
-  <text x="715" y="628" fill="#8b949e" font-size="11">:22    SSH</text>
-  <text x="715" y="648" fill="#8b949e" font-size="11">:8200  Pandora MCP</text>
-  <text x="715" y="668" fill="#8b949e" font-size="11">:80    nginx</text>
+    <rect x="890" y="243" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="258" fill="#a5b4fc" font-weight="600">:8200</text>
+    <text x="950" y="258" fill="#94a3b8">Pandora MCP</text>
 
-  <!-- Legend -->
-  <text x="700" y="720" fill="#e6edf3" font-size="14" font-weight="bold">▸ Agent Models</text>
+    <rect x="890" y="270" width="52" height="20" rx="4" fill="#6366f1" opacity="0.15"/>
+    <text x="895" y="285" fill="#a5b4fc" font-weight="600">:22</text>
+    <text x="950" y="285" fill="#94a3b8">SSH</text>
+  </g>
 
-  <rect x="700" y="733" width="270" height="120" rx="6" fill="#21262d" stroke="#30363d"/>
-  <text x="715" y="753" fill="#a78bfa" font-size="11">◆ Hermes — DeepSeek V4 Pro</text>
-  <text x="715" y="773" fill="#d29922" font-size="11">◆ Frankie — DeepSeek V4 Flash</text>
-  <text x="715" y="793" fill="#d29922" font-size="11">◆ Helios — DeepSeek V4 Pro</text>
-  <text x="715" y="813" fill="#58a6ff" font-size="11">◆ OpenCode — Qwen 35B A3B</text>
-  <text x="715" y="833" fill="#a78bfa" font-size="11">◆ AgentTim — DeepSeek V4 Flash</text>
+  <!-- Agent models -->
+  <text x="890" y="325" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">AGENTS</text>
+  <line x1="890" y1="329" x2="940" y2="329" stroke="#1e2038" stroke-width="1"/>
+
+  <g font-size="10">
+    <rect x="890" y="340" width="260" height="22" rx="5" fill="#1e1b4b" stroke="#06b6d4" stroke-width="0.8"/>
+    <text x="900" y="355" fill="#67e8f9" font-weight="600">Hermes</text>
+    <text x="955" y="355" fill="#94a3b8">DeepSeek V4 Pro · Orchestrator</text>
+
+    <rect x="890" y="368" width="260" height="22" rx="5" fill="#052e16" stroke="#10b981" stroke-width="0.8"/>
+    <text x="900" y="383" fill="#6ee7b7" font-weight="600">Frankie</text>
+    <text x="960" y="383" fill="#94a3b8">DeepSeek V4 Flash · Worker</text>
+
+    <rect x="890" y="396" width="260" height="22" rx="5" fill="#052e16" stroke="#10b981" stroke-width="0.8"/>
+    <text x="900" y="411" fill="#6ee7b7" font-weight="600">Helios</text>
+    <text x="955" y="411" fill="#94a3b8">DeepSeek V4 Pro · Analyst</text>
+
+    <rect x="890" y="424" width="260" height="22" rx="5" fill="#1e1b4b" stroke="#6366f1" stroke-width="0.8"/>
+    <text x="900" y="439" fill="#a5b4fc" font-weight="600">OpenCode</text>
+    <text x="970" y="439" fill="#94a3b8">Qwen 35B A3B · Coder</text>
+
+    <rect x="890" y="452" width="260" height="22" rx="5" fill="#1e1b4b" stroke="#a855f7" stroke-width="0.8"/>
+    <text x="900" y="467" fill="#c4b5fd" font-weight="600">AgentTim</text>
+    <text x="965" y="467" fill="#94a3b8">DeepSeek V4 Flash · Tim</text>
+  </g>
+
+  <!-- Legend / Notes -->
+  <text x="890" y="510" fill="#64748b" font-size="9" font-weight="600" letter-spacing="1.5">NOTES</text>
+  <line x1="890" y1="514" x2="940" y2="514" stroke="#1e2038" stroke-width="1"/>
+
+  <g font-size="9">
+    <circle cx="895" cy="530" r="2.5" fill="#4f46e5"/>
+    <text x="905" y="533" fill="#94a3b8">All machines on Tailscale tailnet</text>
+
+    <circle cx="895" cy="548" r="2.5" fill="#4f46e5"/>
+    <text x="905" y="551" fill="#94a3b8">SSH both directions (Tim ↔ Frankenstein)</text>
+
+    <circle cx="895" cy="566" r="2.5" fill="#4f46e5"/>
+    <text x="905" y="569" fill="#94a3b8">Phone accesses via Tailscale app</text>
+  </g>
+
 </svg>

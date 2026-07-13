@@ -1,91 +1,38 @@
-# AI Architecture — Multi-Machine System
+# AI System Architecture
 
 ![Architecture Diagram](ai-architecture.svg)
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      Frankenstein                               │
-│           7800X3D · RTX 5070Ti 16GB · DDR5 32GB · Ubuntu       │
-│                                                                 │
-│  ┌────────────────────────────────────────────────────────┐    │
-│  │                    Inference                             │    │
-│  │  llama-server :8888                                     │    │
-│  │  Qwen3.6-35B-A3B ~123 tok/s + Qwen3.5-9B Vision        │    │
-│  └────────────────────────────┬───────────────────────────┘    │
-│  ┌────────────────────────────┼──────────────┐                 │
-│  │         Agent Layer         │              │                 │
-│  │  ┌──────────┐ ┌─────────┐  │  ┌─────────┐  │                 │
-│  │  │  Hermes  │ │ Frankie │  │  │ Helios  │  │                 │
-│  │  │Orchestr.│ │ Worker  │  │  │ Analyst │  │                 │
-│  │  └──────────┘ └─────────┘  │  └─────────┘  │                 │
-│  │  ┌──────────┐ ┌─────────┐  │  ┌─────────┐  │                 │
-│  │  │ OpenCode │ │  Kanban  │  │  │Odysseus│  │                 │
-│  │  │  Coder   │ │  Board   │  │  │OUI+n8n │  │                 │
-│  │  └──────────┘ └─────────┘  │  └─────────┘  │                 │
-│  └────────────────────────────┼──────────────┘                 │
-│  ┌────────────────────────────┼──────────────┐                 │
-│  │         Self-Hosted         │              │                 │
-│  │  ┌──────────┐ ┌─────────┐  │              │                 │
-│  │  │ Nextcloud│ │ Immich  │  │  ChromaDB    │                 │
-│  │  │  :8081   │ │ (planned)│  │  Vector Store│                 │
-│  │  └──────────┘ └─────────┘  │              │                 │
-│  └────────────────────────────┼──────────────┘                 │
-│                               │                                │
-│                         Tailscale                              │
-└───────────────────────────────┼────────────────────────────────┘
-                                │
-┌───────────────────────────────┼────────────────────────────────┐
-│                    Tim        │                                 │
-│          MacBook Air M2 · 16GB · macOS                         │
-│                               │                                 │
-│  ┌────────────────────────────┼────────────┐                   │
-│  │         Agent Layer        │            │                   │
-│  │  AgentTim ──── remote ─────┘            │                   │
-│  │  DeepSeek V4 Flash                      │                   │
-│  │  Gina Profile: briefings, summaries     │                   │
-│  └─────────────────────────────────────────┘                   │
-└────────────────────────────────────────────────────────────────┘
-                                │
-                    ┌───────────┼───────────┐
-                    │           │           │
-                    ▼           ▼           ▼
-              ┌────────┐ ┌────────┐ ┌────────┐
-              │ Phone  │ │ Laptop │ │ Other  │
-              │ (via   │ │ (Tim)  │ │ Devices│
-              │ Tailnet│ │        │ │        │
-              └────────┘ └────────┘ └────────┘
-```
+## Machines
 
-## Hardware
+| Machine | Specs | What runs there |
+|---------|-------|----------------|
+| **Frankenstein** | 7800X3D · RTX 5070Ti · DDR5 32GB · Ubuntu | LLM inference, agents, self-hosted services |
+| **Tim** | MacBook Air M2 · 16GB · macOS | Secondary agent, remote inference |
 
-| Machine | Specs | Role |
-|---------|-------|------|
-| **Frankenstein** | AMD 7800X3D · RTX 5070Ti (16GB) · DDR5 32GB | Primary server — LLMs, self-hosted services, agents |
-| **Tim** | Apple M2 · 16GB unified · macOS | Portable agent host, remote inference |
+## Frankenstein
 
-## Services per Machine
+| Category | Service | Details |
+|----------|---------|---------|
+| Inference | llama-server `:8888` | Qwen3.6-35B-A3B (123 tok/s) + Qwen3.5-9B Vision |
+| Vector DB | ChromaDB `:8100` | Embeddings, semantic retrieval |
+| Agent | Hermes | Orchestrator — DeepSeek V4 Pro |
+| Agent | Frankie | Worker — DeepSeek V4 Flash |
+| Agent | Helios | Analyst — DeepSeek V4 Pro |
+| Agent | OpenCode | Coder — Qwen 35B A3B (local) |
+| Orchestration | Kanban Board | SQLite multi-agent queue |
+| AI Workspace | Odysseus `:7000` | OpenWebUI + n8n |
+| Self-hosted | Nextcloud `:8081` | File sync |
+| Self-hosted | Immich | Photo/video (planned) |
 
-### Frankenstein
-| Type | Service | Port |
-|------|---------|------|
-| **Inference** | llama-server (Qwen3.6-35B + Qwen3.5-9B Vision) | `:8888` |
-| **Vector DB** | ChromaDB | `:8100` |
-| **Agent** | Hermes (Orchestrator) | — |
-| **Agent** | Frankie (Worker) | — |
-| **Agent** | Helios (Analyst) | — |
-| **Agent** | OpenCode (Coder — local Qwen 35B) | — |
-| **Orchestration** | Kanban Board (SQLite multi-agent queue) | — |
-| **AI Workspace** | Odysseus (OpenWebUI + n8n) | `:7000` |
-| **File Sync** | Nextcloud | `:8081` |
-| **Photos** | Immich | _(planned)_ |
+## Tim
 
-### Tim
-| Type | Service | Notes |
-|------|---------|-------|
-| **Agent** | AgentTim (DeepSeek V4 Flash) | MacBook management |
-| **Assistant** | Gina Profile | Briefings, summaries |
+| Service | Notes |
+|---------|-------|
+| AgentTim | DeepSeek V4 Flash — MacBook management |
+| Gina Profile | Daily briefings, summaries |
 
 ## Connectivity
-- **Tailscale** mesh VPN across all nodes
+
+- **Tailscale** mesh VPN connecting all nodes
 - SSH both directions
-- Phone and other devices access self-hosted services over the tailnet
+- Phone accesses services via Tailscale app
