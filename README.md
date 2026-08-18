@@ -2,7 +2,7 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my degree at Cardiff University. Pretty quickly realized a degree on its own wasn't going to cut it. I needed to learn something practical. Had a gaming PC with a decent GPU sitting there, so I thought, let me see what all the AI hype is about.
+I came to the UK to start my degree at Cardiff University. Second I got here, I saw how bad the job market was. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. I was scared. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
 
 That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
@@ -26,7 +26,7 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 ![System Diagram](ai-architecture.svg)
 
-**Two machines, one tailnet, a bunch of local AI agents, and way too many containers.**
+**Two machines, one tailnet, a bunch of named local AI agents, and way too many containers.**
 
 | Machine | Specs | What it does |
 |---------|-------|-------------|
@@ -39,58 +39,45 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 |----------|---------|---------|
 | Inference | llama-server `:8888` | Local LLMs, Qwen 3.6 35B + Qwen 3.5 9B Vision |
 | Vector DB | ChromaDB `:8100` | RAG embeddings for bots and agents |
-| Agent | Hermes | Orchestrator, Qwen 3.6 35B |
-| Agent | Frankie | Worker, Qwen 3.6 (lighter tasks) |
-| Agent | Helios | Analyst, Qwen 3.6 35B |
-| Agent | Pi | Specialist, Gemma 4 12B |
-| Agent | OpenCode | Coder, Qwen 3.6 35B |
 | Board | Kanban | SQLite multi-agent queue |
 | Workspace | Odysseus `:7000` | OpenWebUI + n8n automation |
 | Self-hosted | Nextcloud `:8081` | File sync |
 | Self-hosted | Immich | Photo management (planned) |
-| Bot | Professor | RAG-powered arXiv research bot |
 
-### Tim (MacBook Air M2)
+### Named Agents
 
-| Profile | Model | Role |
-|---------|-------|------|
-| Agent Tim | Local LLM | Chief orchestrator, multi-agent coordination |
-| Sentry | Local LLM | Monitoring, alerts, watchdog tasks |
-| + others | Qwen 3.6 / Gemma 4 | Task-dependent switching |
+| Agent | Machine | Role | Model |
+|-------|---------|------|-------|
+| **Hermes** | Pandora | Chief Orchestrator, delegates tasks via Telegram/WhatsApp | Qwen 3.6 35B |
+| **Frankie** | Pandora | Worker, handles queued tasks from Kanban board | Qwen 3.6 |
+| **Helios** | Pandora | Analyst, deep reasoning and research | Qwen 3.6 35B |
+| **Pi** | Pandora | Specialist, creative and niche tasks | Gemma 4 12B |
+| **OpenCode** | Pandora | Coder, code review, debugging, building | Qwen 3.6 35B |
+| **Super Sage** | Pandora | Strategic planner, troubleshooter, code analyst. Uses Claude API hooked to Pi agent for deep code analysis. Guides all other agents. | Claude API + Gemma 4 12B |
+| **Agent Tim** | Tim | Chief Orchestrator on MacBook, multi-agent coordination | Local LLM |
+| **Sentry** | Tim | Monitor, alerts, watchdog tasks | Local LLM |
+| **Advisor** | Tim | PA agent, meeting minutes, schedule management | Qwen 3.6 / Gemma 4 |
+| **Tracker** | Tim | ClickUp agent, task and project tracking | Qwen 3.6 / Gemma 4 |
+| **Muse** | Tim | Brainstorm agent, creative ideation | Qwen 3.6 / Gemma 4 |
+| **Scout** | Tim | Job agent, job hunting, applications, market scanning | Qwen 3.6 / Gemma 4 |
+| **Forge** | Tim | Builder agent, infrastructure, deployments, automation | Qwen 3.6 / Gemma 4 |
+| **Ledger** | Tim | Finance agent, personal finances, budgeting | Qwen 3.6 / Gemma 4 |
+| **Pulse** | Tim | Market agent, global markets, trends, analysis | Qwen 3.6 / Gemma 4 |
+| **Beacon** | Tim | News agent, global news aggregation and summaries | Qwen 3.6 / Gemma 4 |
+| **Lens** | Tim | Document agent, document analysis, report generation | Qwen 3.6 / Gemma 4 |
+| **Sentinel** | Tim | Compliance agent, industry compliance, regulatory checks | Qwen 3.6 / Gemma 4 |
 
-**Tim also runs:**
-- Voice TTS + wake word detection
+### Tim Capabilities
+- Voice TTS + wake word detection ("Agent Tim")
 - Live meeting transcription (BlackHole + Whisper)
 - Meeting pipeline (VTT transcripts to MoM documents)
 - Computer use (background desktop control)
 - Browser automation
 - Apple integrations (Notes, Reminders, iMessage, Find My)
 
-**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing. Heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
+**How models get picked:** Each agent grabs Qwen 3.6 or Gemma 4 depending on what it's doing. Heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
 
 All connected over **Tailscale**. I access everything through SSH, even from my laptop at college.
-
----
-
-## An Agent for Every Use Case
-
-What started as "let me try running a model" turned into specialised agents for basically everything:
-
-| Agent | What it handles |
-|-------|----------------|
-| PA Agent | Meeting minutes, schedule management |
-| ClickUp Agent | Task and project tracking |
-| Brainstorm Agent | Creative ideation |
-| Job Agent | Job hunting and applications |
-| Coding Agent | Code review, debugging, building |
-| Builder Agent | Infrastructure and automation |
-| Finance Agent | Finances and budgeting |
-| Market Agent | Global markets and trends |
-| News Agent | Global news aggregation |
-| Document Agent | Document analysis and reports |
-| Compliance Agent | Industry compliance and regulation |
-
-All running locally. All orchestrated together. Not one AI doing everything, a system of specialists.
 
 ---
 
@@ -102,8 +89,9 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 ## Highlights
 
-- **September 2025** — Moved to the UK for my degree at Cardiff. Realized I needed to upskill.
+- **September 2025** — Moved to the UK for my degree at Cardiff. Saw the job market. Got scared. Decided to build a marketable skill.
 - **February 2026** — First GGUF download. Had zero idea what a "quant" was. Learned everything from Reddit.
+- **March 2026** — Discovered Paperclip. Started building named, specialised agents for every use case.
 - **March 2026** — Discovered I could control context size. Mind blown.
 - **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
 - **May 2026** — Open Claw was overkill. Switched to Hermes. Dived into llama.cpp flags, installed vLLM on Tim.
@@ -112,7 +100,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
 - **August 2026** — Professor bot built (RAG from arXiv). Tim gets multiple profiles, voice, transcription, computer use.
 - **September 2026** — Architecture docs rewritten. Full agent stack documented.
-- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. Discovered Paperclip, hierarchical multi-agent orchestration.
+- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. In demo mode with the client now.
 
 ---
 
@@ -125,4 +113,4 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 ---
 
-*Started with a gaming PC, a new country, and a question. Ended up here.*
+*Started with a gaming PC, a scared student, and a question. Ended up here.*

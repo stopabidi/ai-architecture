@@ -5,11 +5,11 @@ How I went from zero code to a multi-machine, multi-agent AI system in under a y
 ---
 
 ## Prologue: The Beginning (September 2025)
-Moved to the UK to start my degree at Cardiff University. Pretty quickly realized a degree on its own wasn't going to be enough. I needed to learn something practical alongside it.
+Moved to the UK to start my degree at Cardiff University. The second I got here, I saw how bad the job market was. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. I was scared.
 
 I had a gaming PC: 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there doing nothing most of the time.
 
-So I thought, let me see what all the AI hype is about.
+So I looked at it and thought, let me see what this thing can do.
 
 ## Phase 1: The Spark (Late 2025 / Early 2026)
 Started small. Poked around whatever experimental AI tools were on the internet. Web interfaces, free tiers, anything I could get my hands on. Just seeing what these things could do.
@@ -53,14 +53,16 @@ Then I learned that on Apple Silicon, **vLLM** works better. So I installed **vL
 - Installed vLLM on Tim for better Apple Silicon performance
 - Studied llama.cpp flags in depth
 
-## Phase 4: Agents (Mid-2026)
+## Phase 4: Agents (March 2026 onwards)
+This is where things accelerated. Discovered **Paperclip** in March and it changed how I thought about everything. Paperclip lets you run a multi-agent system as a company, with org charts, budgets, governance, and agent roles. That's when I started building **named, specialised agents for every use case**.
+
+Then I installed Hermes and it became the single biggest milestone in this entire journey. Never worked with agentic systems before. Harnesses that could push commands through the terminal, actually do tasks on the computer. This wasn't just chatting with an AI anymore. This was an AI that could *act*.
+
 As soon as I installed Hermes, needed more and more performance out of my hardware. So I **disconnected the monitor from the GPU**. No more desktop. The GPU was now free to do nothing but inference. Dual-booted Pandora, tuned every llama.cpp flag I could find, turned the whole thing into a **headless AI server**.
 
 Every agent, every inference, every model. I access it all **through SSH over Tailscale**. Pandora sits in a corner humming away. I never see its screen. I don't need to.
 
 Quickly realized Open Claw was overkill for my use case. So I switched to **Hermes**, no research, no hesitation, just went for it.
-
-**Hermes was the single biggest milestone in this entire journey.** Never worked with agentic systems before. Harnesses that could push commands through the terminal, actually do tasks on the computer. This wasn't just chatting with an AI anymore. This was an AI that could *act*.
 
 While using Hermes, started discovering the ecosystem. So many different agents out there, nano claw, small claw, pie claw, this claw, that claw. Every week something new appeared. But Hermes was the one that stuck.
 
@@ -68,31 +70,44 @@ And then I hit a wall: needed **custom skills**. The built-in stuff wasn't enoug
 
 So I learned. Properly. Spent **two months** just learning. YouTube videos, tutorials, the Claw Hub, experimenting with Hermes day in and day out. Figured out how to write custom skills from scratch. How to package them, chain them, make agents do exactly what I needed.
 
-- First **Hermes Agent** deployment on Pandora
-- Learned about MCP, Kanban boards, multi-agent orchestration
-- Spent two months learning through YouTube, tutorials, Claw Hub
-- Figured out how to make custom skills
-- Discovered Pi Agent, set it up alongside Hermes
-- Custom skills for agent delegation and orchestration
-- Kanban boards for agent workflow management
-- Started learning n8n for automation pipelines
-- Created **AgentTim** on the MacBook
-- Multi-agent Kanban pipeline: Hermes, Frankie, Helios, OpenCode
-- Parallel task execution, dependency chaining, checkpoint analysis
+### The Named Agents
 
-Went from copying Reddit configurations to writing my own agent skills. Six months earlier I didn't know what a terminal was. Now I was building autonomous systems.
+Once Paperclip showed me what structured multi-agent systems could look like, I started naming and scoping every agent for a specific job:
+
+| Agent | Machine | Role |
+|-------|---------|------|
+| **Hermes** | Pandora | Chief Orchestrator. Delegates tasks via Telegram and WhatsApp. The brain of the operation. |
+| **Frankie** | Pandora | Worker. Picks up tasks from the Kanban queue and executes them. |
+| **Helios** | Pandora | Analyst. Deep reasoning, research, complex problem solving. |
+| **Pi** | Pandora | Specialist. Creative and niche tasks that need a lighter touch. |
+| **OpenCode** | Pandora | Coder. Code review, debugging, building software. |
+| **Super Sage** | Pandora | Strategic planner and troubleshooter. Uses Claude API hooked to Pi agent for deep code analysis. Analyzes problems, plans solutions, guides every other agent. The one that thinks before anyone acts. |
+| **Agent Tim** | Tim | Chief Orchestrator on the MacBook. Coordinates across all Tim-based agents. |
+| **Sentry** | Tim | Monitor. Watches for alerts, system health, watchdog tasks. |
+| **Advisor** | Tim | PA agent. Takes minutes of meetings, manages my schedule. |
+| **Tracker** | Tim | ClickUp agent. Task management, project tracking. |
+| **Muse** | Tim | Brainstorm agent. Creative ideation, idea generation. |
+| **Scout** | Tim | Job agent. Job hunting, applications, market scanning. |
+| **Forge** | Tim | Builder agent. Infrastructure, deployments, automation. |
+| **Ledger** | Tim | Finance agent. Personal finances, budgeting, tracking. |
+| **Pulse** | Tim | Market agent. Global markets, trends, analysis. |
+| **Beacon** | Tim | News agent. Global news aggregation and summaries. |
+| **Lens** | Tim | Document agent. Document analysis, report generation. |
+| **Sentinel** | Tim | Compliance agent. Industry compliance, regulatory checks. |
+
+Each one runs locally. Each one picks Qwen 3.6 or Gemma 4 based on what it does. Hermes delegates, Frankie executes, Helios reasons, Super Sage thinks and plans, Scout hunts, Advisor schedules, Beacon reads the news. Not one AI doing everything. A system of specialists.
+
+### Building the Skills
+
+Since Hermes already had **Telegram and WhatsApp** configured, I wrote **custom skills to let Hermes delegate tasks to the other agents**. Not just dispatching. Real orchestration. Skills for coordinating multiple agents on a single task. Skills for "sponsoring" agents, spinning one up for a specific job and pulling results back.
+
+That's when I stumbled into **Kanban boards**. Realized I could use them to manage agent workflows, visual queues of what's running, what's done, what's blocked. Started using Kanban boards for my agents alongside learning more and more about **n8n** for automation pipelines.
 
 But then realized something: agentic systems like Hermes were great for general tasks, but for **strictly coding**, I needed something purpose-built. Something in the scope of actual software development.
 
 So I installed **Codex**, **Open Code**, and **Claude Code**, all three at once. Hooked them all up to my local AI. Started benchmarking them side by side, testing which one could actually write code, review PRs, and handle real development workflows. Running all three simultaneously, comparing outputs, finding strengths and weaknesses.
 
 That's when I stopped being a user and started being someone who could evaluate tools. Wasn't just following tutorials anymore, was making informed decisions about what worked and what didn't.
-
-Then I discovered **Pi Agent**, another specialist model. Set up Pi alongside everything else and made them all work together.
-
-Since Hermes already had **Telegram and WhatsApp** configured, I wrote **custom skills to let Hermes delegate tasks to the other agents**. Not just dispatching. Real orchestration. Skills for coordinating multiple agents on a single task. Skills for "sponsoring" agents, spinning one up for a specific job and pulling results back.
-
-That's when I stumbled into **Kanban boards**. Realized I could use them to manage agent workflows, visual queues of what's running, what's done, what's blocked. Started using Kanban boards for my agents alongside learning more and more about **n8n** for automation pipelines.
 
 ## Phase 5: Self-Hosting & Bots (July 2026)
 Now I run everything myself:
@@ -104,7 +119,8 @@ Now I run everything myself:
 | Odysseus | OpenWebUI + n8n automation |
 | Nextcloud | File sync |
 | Kanban Board | Multi-agent orchestration |
-| 5x Agents | Hermes, Frankie, Helios, Pi, OpenCode |
+| 6x Agents on Pandora | Hermes, Frankie, Helios, Pi, OpenCode, Super Sage |
+| 11x Agents on Tim | Agent Tim, Sentry, Advisor, Tracker, Muse, Scout, Forge, Ledger, Pulse, Beacon, Lens, Sentinel |
 | Tailscale | All machines connected |
 
 - Started building bots that could answer questions from uploaded files
@@ -114,10 +130,7 @@ Now I run everything myself:
 Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 
 **Tim gets serious:**
-- **Multiple Hermes profiles**, each with a role:
-  - Agent Tim, orchestrator
-  - Sentry, monitoring and watchdog
-  - Plus others for specialised tasks
+- **Multiple Hermes profiles**, each with a role
 - **Voice** — TTS + wake word detection
 - **Live transcription** — BlackHole audio routing + Whisper STT
 - **Meeting pipeline** — Teams VTT transcripts to Minutes of Meeting documents
@@ -126,40 +139,17 @@ Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 - **Apple integrations** — Notes, Reminders, iMessage, Find My
 
 **Pandora grows:**
-- **Pi agent** added, specialist tasks
 - All agents dynamically switch between Qwen 3.6 and Gemma 4 based on task type
 - Reasoning-heavy workloads go to the bigger model, fast tasks stay light
 
-## Phase 7: First Real Project & Paperclip (Late 2026)
-My professor at Cardiff gave me my first real opportunity: **curate a custom AI solution for him**. A WhatsApp RAG bot. A real project with a real client, not just tinkering.
+## Phase 7: First Real Project (Late 2026)
+My professor at Cardiff gave me my first real opportunity: **curate a custom AI solution for him**. A WhatsApp RAG bot that answers questions from his published consulting work. A real project with a real client, not just tinkering.
 
 I used my **multi-agent system** to pull it off. Hermes coordinated. The agents ran inference. The pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. Learned more from that one project than from months of experimentation.
 
 Everything I'd built, the headless server, the Tailscale mesh, the custom skills, the Kanban boards, it all came together for a real deliverable.
 
-Then I discovered **Paperclip**. An open-source project that lets you run your multi-agent system as a **company**, with org charts, budgets, governance, agent roles, and goal alignment. Not just dispatching tasks anymore. Managing an AI workforce. Claude Code, Codex, Hermes, custom scripts, Paperclip organizes them into a functioning hierarchy.
-
-That's where I am now. Taking everything I've learned and scaling it into something structured, governed, and real.
-
-## An Agent for Everything
-
-Looking back, that's what this all led to. I now have an **agent for every use case**, each one purpose-built, each one running locally:
-
-| Agent | What it handles |
-|-------|----------------|
-| PA Agent | Takes minutes of meetings, manages schedule |
-| ClickUp Agent | Task management, project tracking |
-| Brainstorm Agent | Creative ideation, idea generation |
-| Job Agent | Job hunting, applications, market scanning |
-| Coding Agent | Code review, debugging, building |
-| Builder Agent | Infrastructure, deployments, automation |
-| Finance Agent | Personal finances, budgeting, tracking |
-| Market Agent | Global markets, trends, analysis |
-| News Agent | Global news aggregation and summaries |
-| Document Agent | Document analysis, report generation |
-| Compliance Agent | Industry compliance, regulatory checks |
-
-It's not just one AI doing everything anymore. It's a system. Specialised agents, each one good at its thing, orchestrated together. That's the goal. That's where this is heading.
+It's in **demo mode** now. The client is testing it. Once they're done, I'll run QA, make a few changes, and ship it. My first project in the UK. Built entirely on local AI.
 
 ## The Stack Today
 ```mermaid
@@ -172,14 +162,24 @@ graph TB
         HE[Helios · Analyst]
         PI[Pi · Specialist]
         OC[OpenCode · Coder]
+        SS[Super Sage · Planner]
         KB[Kanban Board]
         OD[Odysseus :7000]
         NC[Nextcloud :8081]
-        PR[Professor]
     end
     subgraph T[Tim · MacBook M2]
         AT[Agent Tim · Orchestrator]
         SN[Sentry · Monitor]
+        AD[Advisor · PA]
+        TK[Tracker · ClickUp]
+        MU[Muse · Brainstorm]
+        SC[Scout · Job Hunt]
+        FO[Forge · Builder]
+        LG[Ledger · Finance]
+        PL[Pulse · Markets]
+        BC[Beacon · News]
+        LN[Lens · Documents]
+        SE[Sentinel · Compliance]
         VO[Voice + TTS]
         TR[Transcription]
         CU[Computer Use]
@@ -192,8 +192,8 @@ graph TB
     LLM --- HE
     LLM --- PI
     LLM --- OC
-    LLM --- PR
-    VEC --- PR
+    SS -->|plans & guides| H
+    SS -->|analyzes code| OC
 ```
 
 ## Lessons
@@ -206,12 +206,14 @@ graph TB
 - **Tailscale makes it mobile.** Your desktop's power, anywhere you go.
 - **SSH + Tailscale open every door.** Two machines feel like one.
 - **Headless is the way.** Disconnect the monitor, dedicate the GPU to inference.
-- **Multi-agent orchestration is real.** Kanban boards + dispatchers + worker profiles work.
+- **Paperclip changes how you think about agents.** Named agents with jobs feel different than anonymous workers.
+- **Every agent needs a brain behind it.** Super Sage with Claude API changed how I do code analysis.
 - **Custom skills change everything.** Once you can write your own, the possibilities multiply.
 - **Self-hosting is addictive.** Once you control everything, you don't want to go back.
 - **Voice changes everything.** Talking to your agent feels different than typing.
 - **Local AI is enough.** No cloud APIs needed when your GPU does the work.
 - **Real projects teach the most.** One deliverable beats a hundred experiments.
+- **Fear is a good motivator.** Being scared of the job market made me build something real.
 
 ## What's Next
 - Immich (photo management), finally setting it up
@@ -223,4 +225,4 @@ graph TB
 
 ---
 
-*Started with a gaming PC, a new country, and a question. Ended up here.*
+*Started with a gaming PC, a scared student, and a question. Ended up here.*
