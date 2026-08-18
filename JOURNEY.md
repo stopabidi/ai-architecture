@@ -7,7 +7,9 @@ How I went from zero code to a multi-machine, multi-agent AI system in under a y
 ## Prologue: The Beginning (September 2025)
 Moved to the UK to start my MBM (Master of Business Management) at Cardiff University. The second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy. Graduate hiring fell 8%. A third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have.
 
-I had a gaming PC: 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there doing nothing most of the time.
+I had a MacBook air (Tim) that I initially decided to use for Uni work. 
+
+I also had a gaming PC (which I named Pandora): 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there doing nothing most of the time.
 
 So I looked at it and thought, let me see what this thing can do.
 
@@ -25,7 +27,8 @@ Most of what I learned came from **Reddit**. Searched for my GPU specs, read wha
 But it worked. And I wanted more.
 
 ## Phase 2: Control (Late 2025)
-LM Studio was great but I wanted more. Discovered **Ollama**, and that changed everything. Suddenly I could pull any model by name from the terminal and run it instantly.
+LM Studio was great but then I stumbled on Ollama. 
+**Ollama** made everything easier to use. Suddenly I could pull any model by name from the terminal and run it instantly.
 
 Went on a tear. Tried **Meta Llama** models. Then **Mistral**. Then **Gemma**. Then **Qwen 3.6**. Every model family felt like opening a different door, each one had its own personality, its own strengths.
 
@@ -42,13 +45,12 @@ Then **Open Claw** released in January 2026. Was one of the early adopters, no h
 
 But all of it was still running on local LLMs, models served from LM Studio on Pandora. Tim was just the interface. The brains were always local.
 
-That realization sent me deeper. Watched long-form YouTube videos on AI deployment, LLM deployment. That's when I learned that **LM Studio and Ollama are both built on llama.cpp** underneath. So maybe I should go straight to the source.
+That realization sent me deeper. Watched long-form YouTube videos on AI deployment, Local LLM deployment – that's when I learned that **LM Studio and Ollama are both built on llama.cpp** underneath. So maybe I should go straight to the source.
 
-Studied **llama.cpp**, every flag, every parameter. What each flag meant, how to tune performance. Read the docs, tried different configurations, broke things, fixed them. Learned about GGUF quantisation formats, KV cache management, memory-mapped file I/O, and batch inference tuning.
+Studied **llama.cpp**, every flag, every parameter. I learnt what each flag meant, how to tune performance, read the docs, tried different configurations, broke things, fixed them. Then i moved to learning about GGUF quantisation formats, KV cache management, memory-mapped file I/O, and batch inference tuning.
 
 Then I learned that on Apple Silicon, **vLLM** works better — PagedAttention for efficient memory management, continuous batching for throughput. So I installed **vLLM on Tim** and suddenly the MacBook wasn't just a terminal. It was a proper inference server with an OpenAI-compatible API endpoint.
 
-- Bought **Tim** (MacBook Air M2) as a second machine
 - Factory-reset Tim for Open Claw, then pivoted to Hermes
 - Installed vLLM on Tim for better Apple Silicon performance
 - Studied llama.cpp flags in depth
