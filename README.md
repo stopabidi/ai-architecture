@@ -94,9 +94,9 @@ I have **multiple group chats with my agents on Telegram**. Each group chat is a
 
 ### Docker
 
-I discovered Docker when I installed Hermes for the first time. Realized I could run Hermes as a Docker image, not just locally. That changed everything. Started containerising all the coding harnesses (Codex, Open Code, Claude Code) and Hermes itself.
+I discovered Docker when I installed Hermes for the first time. I quickly realized I could run Hermes as a Docker image, not just locally. That gave me an epiphany. I started containerising all the coding harnesses (Codex, Open Code, Claude Code) and Hermes itself.
 
-Docker provides process isolation and filesystem sandboxing. API keys for cloud services (OpenRouter, Claude, Google Flash) only live inside containers — they never touch the host machine. When a cloud model is needed, the container handles the API call, processes the response, and the key stays locked inside. Local inference agents never touch an API at all — they run straight off Pandora's GPU via the llama-server endpoint.
+Docker provides process isolation and filesystem sandboxing. API keys for cloud services (OpenRouter, Claude, Google Flash) only live inside containers — they never touch the host machine. When a cloud model is needed, the container handles the API call, processes the response, and the key stays locked inside. Local inference agents never touch an API at all — they run straight off Pandora's GPU via the llama-server endpoint. Agents running inside the isolated containers don't get to see what's on my computer. 
 
 All connected over **Tailscale** mesh VPN. I access everything through SSH, even from my laptop at college. The tailnet provides WireGuard-based encrypted tunnels between all devices.
 
@@ -111,26 +111,13 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 ## Highlights
 
 - **September 2025** — Moved to the UK for my MBM at Cardiff. Saw the job market. 140 applications per vacancy. Ghost jobs everywhere. Got scared. Decided to build a marketable skill.
-- **Late 2025** — First GGUF download. Had zero idea what quantisation was. Learned everything from Reddit.
+- **November 2025** — First GGUF download. Had zero idea what quantisation was. Learned everything from Reddit.
 - **December 2025** — Switched from tinkering to agentic AI. Discovered Paperclip. Started building named, specialised agents.
 - **January 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
 - **February 2026** — Open Claw was overkill. Switched to Hermes. Discovered Docker. Dived into llama.cpp flags, installed vLLM on Tim.
 - **February 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **February to April 2026** — Hermes became the biggest milestone. Months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **March 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
-- **Mid 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
-- **September 2026** — Architecture docs rewritten. Full agent stack documented.
-
----
-
-## Projects
-
-| Repo | What it does |
-|------|-------------|
-| [AskJoe](https://github.com/stopabidi/ai-architecture) | WhatsApp RAG bot — Twilio webhook, Node.js bridge, FastAPI RAG API, ChromaDB vector store, document ingestion pipeline |
-| [Professor](https://github.com/stopabidi/professor-whatsapp-bot) | RAG-powered arXiv research bot with citation grounding |
-| [AI Architecture](https://github.com/stopabidi/ai-architecture) | This repo — system architecture, agent documentation, infrastructure diagrams |
-
----
+- **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now. Architecture docs rewritten. Full agent stack documented.
 
 *Started with a gaming PC, a scared student, and a question. Ended up here.*
