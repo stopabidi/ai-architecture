@@ -5,9 +5,9 @@ How I went from zero code to a multi-machine, multi-agent AI system in under a y
 ---
 
 ## Prologue: The Beginning (September 2025)
-Moved to the UK to start my MBM (Master of Business Management) at Cardiff University. The second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy. Graduate hiring fell 8%. A third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have.
+Moved to the UK to start my MBM (Master of Business Management) at Cardiff University. The second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy. Graduate hiring fell 8%. A third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something — a marketable skill that most people didn't have.
 
-I had a MacBook air (Tim) that I initially decided to use for Uni work. 
+I had a MacBook Air (Tim) that I initially decided to use for Uni work.
 
 I also had a gaming PC (which I named Pandora): 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there doing nothing most of the time.
 
@@ -22,15 +22,15 @@ Found **LM Studio**. It had a GUI, a chat box right there, no terminal required.
 
 Had no idea what quantisation meant. Didn't know what context size was. Just typed things and watched responses appear.
 
-Most of what I learnt came from **Reddit**. Searched for my GPU specs, read what other people recommended, copied their configurations, tried them out. "What model runs best on a 5070Ti?" "What quant should I use?" "Why is my context so slow?" Every setting, every decision, learnt from people who'd already figured it out.
+Most of what I learned came from **Reddit**. Searched for my GPU specs, read what other people recommended, copied their configurations, tried them out. "What model runs best on a 5070Ti?" "What quant should I use?" "Why is my context so slow?" Every setting, every decision, learned from people who'd already figured it out.
 
 But it worked. And I wanted more.
 
 ## Phase 2: Control (Late 2025)
-LM Studio was great but then I stumbled on Ollama. 
+LM Studio was great but then I stumbled on Ollama.
 **Ollama** made everything easier to use. Suddenly I could pull any model by name from the terminal and run it instantly.
 
-Went on a tear. Tried **Meta Llama** models. Then **Mistral**. Then **Gemma**. Then **Qwen 3.6**. Every model family felt like opening a different door, each one had its own personality, its own strengths.
+Went on a tear. Tried **Meta Llama** models. Then **Mistral**. Then **Gemma**. Then **Qwen 3.6**. Every model family felt like opening a different door — each one had its own personality, its own strengths.
 
 This is where the obsession really took hold. Started running models on **both machines simultaneously**, Tim and Pandora, just for the fun of it. Not because I needed to. Because I could. Because it was exciting.
 
@@ -41,15 +41,15 @@ But then I wanted the **power of my desktop with the mobility of my laptop**. Di
 That changed everything. My laptop was no longer limited by its own hardware. It was a window into Pandora's brain.
 
 ## Phase 3: Going Deeper (January 2026)
-Then **Open Claw** released in January 2026. Was one of the early adopters, no hesitation. Factory-reset Tim, installed Open Claw, started using it. Was bewildered. Shocked, even. This was real. Running a local AI agent on my laptop.
+Then **Open Claw** released in January 2026. I was one of the early adopters, no hesitation. Factory-reset Tim, installed Open Claw, started using it. Was bewildered. Shocked, even. This was real. Running a local AI agent on my laptop.
 
-But all of it was still running on local LLMs, models served from LM Studio on Pandora. Tim was just the interface. The brains were always local.
+But all of it was still running on local LLMs — models served from LM Studio on Pandora. Tim was just the interface. The brains were always local.
 
-That realization sent me deeper. Watched long-form YouTube videos on AI deployment, Local LLM deployment – that's when I learnt that **LM Studio and Ollama are both built on llama.cpp** underneath. So maybe I should go straight to the source.
+That realization sent me deeper. Watched long-form YouTube videos on AI deployment, Local LLM deployment — that's when I learned that **LM Studio and Ollama are both built on llama.cpp** underneath. So maybe I should go straight to the source.
 
-Studied **llama.cpp**, every flag, every parameter. I learnt what each flag meant, how to tune performance, read the docs, tried different configurations, broke things, fixed them. Then i moved to learning about GGUF quantisation formats, KV cache management, memory-mapped file I/O, and batch inference tuning.
+Studied **llama.cpp**, every flag, every parameter. I learned what each flag meant, how to tune performance, read the docs, tried different configurations, broke things, fixed them. Then I moved to learning about GGUF quantisation formats, KV cache management, memory-mapped file I/O, and batch inference tuning.
 
-Then I learnt that on Apple Silicon, **vLLM** works better — PagedAttention for efficient memory management, continuous batching for throughput. So I installed **vLLM on Tim** and suddenly the MacBook wasn't just a terminal. It was a proper inference server with an OpenAI-compatible API endpoint.
+Then I learned that on Apple Silicon, **vLLM** works better — PagedAttention for efficient memory management, continuous batching for throughput. So I installed **vLLM on Tim** and suddenly the MacBook wasn't just a terminal. It was a proper inference server with an OpenAI-compatible API endpoint.
 
 - Factory-reset Uni laptop and named it Tim for Open Claw, then pivoted to Hermes
 - Installed vLLM on Tim for better Apple Silicon performance
@@ -64,11 +64,11 @@ As soon as I installed Hermes, I needed more and more performance out of my hard
 
 Every agent, every inference, every model — I access it all **through SSH over Tailscale**. Pandora sits in a corner humming away. I never see its screen. I don't need to.
 
-Quickly realized Open Claw was overkill for my use case. So I switched to **Hermes** in February, no research, no hesitation, just went for it.
+Quickly I realised Open Claw was overkill for my use case. So I switched to **Hermes** in February, no research, no hesitation, just went for it.
 
 ### Docker
 
-When I installed Hermes, I discovered **Docker**. Realized I could run Hermes as a Docker image, not just install it locally. That changed everything. Started containerising all the coding harnesses — Codex, Open Code, Claude Code — and Hermes itself.
+When I installed Hermes, I discovered **Docker**. Realised I could run Hermes as a Docker image, not just install it locally. That changed everything. Started containerising all the coding harnesses — Codex, Open Code, Claude Code — and Hermes itself.
 
 Docker provides process isolation and filesystem sandboxing. API keys for cloud services only live inside containers — they never touch the host machine. When a cloud model is needed, the container handles the API call and processes the response, while the key stays locked inside. Local inference agents never touch an API at all — they run straight off Pandora's GPU via the llama-server endpoint.
 
@@ -80,9 +80,9 @@ The inference split:
 
 While using Hermes, I started discovering the ecosystem. So many different agents out there, nano claw, small claw, pie claw, this claw, that claw. Every week something new appeared. But Hermes was the one that stuck.
 
-And then I hit a wall: needed **custom skills**. The built-in stuff wasn't enough. Wanted my agents to do specific things, things no one had written a skill for yet.
+And then I hit a wall: I needed **custom skills**. The built-in stuff wasn't enough. Wanted my agents to do specific things, things no one had written a skill for yet.
 
-So I learnt. Properly. Spent **months** just learning. YouTube videos, tutorials, the Claw Hub, experimenting with Hermes day in and day out. I figured out how to write custom skills from scratch, how to package them, chain them, make agents do exactly what I needed. Then I learnt about MCP (Model Context Protocol), function calling, tool use patterns, and prompt engineering for agentic workflows.
+So I learned. Properly. Spent **months** just learning. YouTube videos, tutorials, the Claw Hub, experimenting with Hermes day in and day out. I figured out how to write custom skills from scratch, how to package them, chain them, make agents do exactly what I needed. Then I learned about MCP (Model Context Protocol), function calling, tool use patterns, and prompt engineering for agentic workflows.
 
 ### Telegram Group Chats
 
@@ -117,14 +117,14 @@ Each one runs locally or through Docker containers. Hermes delegates through Tel
 
 ### Building the Skills
 
-Since Hermes already had **Telegram and WhatsApp** configured, I wrote **custom skills to let Hermes delegate tasks to the other agents**. Not just dispatching, real orchestration, skills for coordinating multiple agents on a single task, skills for "sponsoring" agents, spinning one up for a specific job and pulling results back.
+Since Hermes already had **Telegram and WhatsApp** configured, I wrote **custom skills to let Hermes delegate tasks to the other agents**. Not just dispatching — real orchestration. Skills for coordinating multiple agents on a single task. Skills for "sponsoring" agents, spinning one up for a specific job and pulling results back.
 
-That's when I stumbled into **Kanban boards**. I realized that I could use them to manage agent workflows — visual queues of what's running, what's done, what's blocked, SQLite-backed task queue with dependency chaining.
+That's when I stumbled into **Kanban boards**. I realised that I could use them to manage agent workflows — visual queues of what's running, what's done, what's blocked, SQLite-backed task queue with dependency chaining.
 I started using Kanban boards for my agents alongside learning more and more about **n8n** for workflow automation pipelines.
 
-But then realized something: agentic systems like Hermes were great for general tasks, but for **strictly coding**, I needed something purpose-built. Something within the scope of actual software development.
+But then I realised something: agentic systems like Hermes were great for general tasks, but for **strictly coding**, I needed something purpose-built. Something within the scope of actual software development.
 
-So I installed **Codex**, **Open Code**, and **Claude Code**, one by one, hooking them all up to my local AI Server. I benchmarked them one by one, testing which one could actually write code, review PRs, and handle real development workflows. 
+So I installed **Codex**, **Open Code**, and **Claude Code**, one by one, hooking them all up to my local AI Server. I benchmarked them one by one, testing which one could actually write code, review PRs, and handle real development workflows.
 
 That's when I stopped being a user and started being someone who could evaluate tools. Before I knew it, I wasn't just following tutorials anymore, I was making informed decisions about what worked and what didn't.
 
@@ -164,15 +164,15 @@ Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 - Briefs and news come from Google Flash API
 
 ## Phase 7: First Real Project (Late 2026)
-My Uni professor at Cardiff gave me my first real opportunity: **build a WhatsApp RAG bot for him**. The Professor has a lot of colleagues, CEOs and industry experts, who ask him about his work and concepts from his published consulting books. He wanted that automated. That's what I built.
+My Uni professor at Cardiff gave me my first real opportunity: **build a WhatsApp RAG bot for him**. The Professor has a lot of colleagues, CEOs and industry experts who ask him about his work and concepts from his published consulting books. He wanted that automated. That's what I built.
 
 The stack: **Twilio** webhook → **Node.js** bridge → **FastAPI** RAG API → **ChromaDB** vector store → local LLM inference. Document ingestion pipeline handles PDFs, chunking, embedding generation, and semantic search.
 
-I used my **multi-agent system** to pull it off. Hermes coordinated, agents ran inference, the pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. learnt more from that one project than from months of experimentation.
+I used my **multi-agent system** to pull it off. Hermes coordinated, agents ran inference, the pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. I learned more from that one project than from months of experimentation.
 
 Everything I'd built, the headless server, the Tailscale mesh, the custom skills, the Kanban boards — all came together for a real deliverable.
 
-My first project in he UK is now in demo mode. Built entirely on local AI, without spending any money on AI subscriptions, while keeping my data safe and private.
+My first project in the UK is now in demo mode. Built entirely on local AI, without spending any money on AI subscriptions, while keeping my data safe and private.
 
 ## The Stack Today
 ```mermaid

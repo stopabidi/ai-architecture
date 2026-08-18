@@ -2,7 +2,7 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my MBM (Master of Business Management) at Cardiff University. Second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy, graduate hiring fell 8%, and a third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
+I came to the UK to start my MBM (Master of Business Management) at Cardiff University. The second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy, graduate hiring fell 8%, and a third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something — a marketable skill that most people didn't have. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
 
 That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
@@ -44,7 +44,7 @@ Every role gets the right model for the job. The architecture splits inference b
 | **Planner / technical agent** (Super Sage) | Claude API + OpenRouter | Deep code analysis, architectural decision-making |
 | **Briefs and news** (Beacon) | Google Flash API | Fast summarisation, high-volume ingestion |
 
-Orchestrators and coders run off Pandora's GPU via `llama-server`. Specialised agents run on dense local models. Cloud APIs (Claude, OpenRouter, Google Flash) are used selectively for tasks that benefit from frontier model capabilities, locked inside Docker containers so API keys never touch the host filesystem.
+Orchestrators and coders run off Pandora's GPU via `llama-server`. Specialised agents run on dense local models. Cloud APIs (Claude, OpenRouter, Google Flash) are used selectively for tasks that benefit from frontier model capabilities. They stay locked inside Docker containers so API keys never touch the host filesystem.
 
 ### Telegram
 
@@ -94,9 +94,9 @@ I have **multiple group chats with my agents on Telegram**. Each group chat is a
 
 ### Docker
 
-I discovered Docker when I installed Hermes for the first time. I quickly realized I could run Hermes as a Docker image, not just locally. That gave me an epiphany. I started containerising all the coding harnesses (Codex, Open Code, Claude Code) and Hermes itself.
+I discovered Docker when I installed Hermes for the first time. I quickly realised I could run Hermes as a Docker image, not just locally. That gave me an epiphany. I started containerising all the coding harnesses (Codex, Open Code, Claude Code) and Hermes itself.
 
-Docker provides process isolation and filesystem sandboxing. API keys for cloud services (OpenRouter, Claude, Google Flash) only live inside containers — they never touch the host machine. When a cloud model is needed, the container handles the API call, processes the response, and the key stays locked inside. Local inference agents never touch an API at all — they run straight off Pandora's GPU via the llama-server endpoint. Agents running inside the isolated containers don't get to see what's on my computer. 
+Docker provides process isolation and filesystem sandboxing. API keys for cloud services (OpenRouter, Claude, Google Flash) only live inside containers — they never touch the host machine. When a cloud model is needed, the container handles the API call, processes the response, and the key stays locked inside. Local inference agents never touch an API at all — they run straight off Pandora's GPU via the llama-server endpoint. Agents running inside the isolated containers don't get to see what's on my computer.
 
 All connected over **Tailscale** mesh VPN. I access everything through SSH, even from my laptop at college. The tailnet provides WireGuard-based encrypted tunnels between all devices.
 
