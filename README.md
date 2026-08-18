@@ -14,7 +14,7 @@ That curiosity turned into a year of tinkering, breaking stuff, learning, and bu
 Phase 1  ──  Gaming PC → "wait, this GPU is good for AI?"
 Phase 2  ──  LM Studio → Ollama → Tailscale → mobility
 Phase 3  ──  Open Claw → llama.cpp → vLLM → going deeper
-Phase 4  ──  Hermes → custom skills → agents → Kanban → n8n
+Phase 4  ──  Hermes → Docker → custom skills → agents → Kanban → n8n
 Phase 5  ──  Self-hosting everything → bots → full stack
 Phase 6  ──  Voice, vision, transcription, autonomous agents
 Phase 7  ──  First real project → Paperclip → structured AI company (you are here)
@@ -33,6 +33,16 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 | **Pandora** | 7800X3D · RTX 5070Ti · 32GB · Ubuntu | All inference, all agents, all services |
 | **Tim** | MacBook Air M2 · 16GB · macOS | Portable agent host, voice, transcription |
 
+### How Inference Works
+
+Not everything runs on local hardware. The setup is split by role:
+
+- **Orchestrators and managers** (Hermes, Agent Tim, Frankie, Helios, etc.) — local AI on Pandora's GPU
+- **Coders** (OpenCode) — local AI on Pandora's GPU
+- **Specialised agents** (Scout, Advisor, Muse, Beacon, etc.) — OpenRouter or Google Flash API
+
+API keys live exclusively inside Docker containers. That way the agents get the flexibility of cloud models for lightweight tasks, but the keys and data stay isolated. Docker was a game changer when I discovered it during the Hermes install, more on that below.
+
 ### Pandora
 
 | Category | Service | Details |
@@ -46,26 +56,26 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 ### Named Agents
 
-| Agent | Machine | Role | Model |
-|-------|---------|------|-------|
-| **Hermes** | Pandora | Chief Orchestrator, delegates tasks via Telegram/WhatsApp | Qwen 3.6 35B |
-| **Frankie** | Pandora | Worker, handles queued tasks from Kanban board | Qwen 3.6 |
-| **Helios** | Pandora | Analyst, deep reasoning and research | Qwen 3.6 35B |
-| **Pi** | Pandora | Specialist, creative and niche tasks | Gemma 4 12B |
-| **OpenCode** | Pandora | Coder, code review, debugging, building | Qwen 3.6 35B |
+| Agent | Machine | Role | Inference |
+|-------|---------|------|-----------|
+| **Hermes** | Pandora | Chief Orchestrator, delegates tasks via Telegram/WhatsApp | Local (Qwen 3.6 35B) |
+| **Frankie** | Pandora | Worker, handles queued tasks from Kanban board | Local (Qwen 3.6) |
+| **Helios** | Pandora | Analyst, deep reasoning and research | Local (Qwen 3.6 35B) |
+| **Pi** | Pandora | Specialist, creative and niche tasks | Local (Gemma 4 12B) |
+| **OpenCode** | Pandora | Coder, code review, debugging, building | Local (Qwen 3.6 35B) |
 | **Super Sage** | Pandora | Strategic planner, troubleshooter, code analyst. Uses Claude API hooked to Pi agent for deep code analysis. Guides all other agents. | Claude API + Gemma 4 12B |
-| **Agent Tim** | Tim | Chief Orchestrator on MacBook, multi-agent coordination | Local LLM |
-| **Sentry** | Tim | Monitor, alerts, watchdog tasks | Local LLM |
-| **Advisor** | Tim | PA agent, meeting minutes, schedule management | Qwen 3.6 / Gemma 4 |
-| **Tracker** | Tim | ClickUp agent, task and project tracking | Qwen 3.6 / Gemma 4 |
-| **Muse** | Tim | Brainstorm agent, creative ideation | Qwen 3.6 / Gemma 4 |
-| **Scout** | Tim | Job agent, job hunting, applications, market scanning | Qwen 3.6 / Gemma 4 |
-| **Forge** | Tim | Builder agent, infrastructure, deployments, automation | Qwen 3.6 / Gemma 4 |
-| **Ledger** | Tim | Finance agent, personal finances, budgeting | Qwen 3.6 / Gemma 4 |
-| **Pulse** | Tim | Market agent, global markets, trends, analysis | Qwen 3.6 / Gemma 4 |
-| **Beacon** | Tim | News agent, global news aggregation and summaries | Qwen 3.6 / Gemma 4 |
-| **Lens** | Tim | Document agent, document analysis, report generation | Qwen 3.6 / Gemma 4 |
-| **Sentinel** | Tim | Compliance agent, industry compliance, regulatory checks | Qwen 3.6 / Gemma 4 |
+| **Agent Tim** | Tim | Chief Orchestrator on MacBook, multi-agent coordination | Local (Qwen 3.6 / Gemma 4) |
+| **Sentry** | Tim | Monitor, alerts, watchdog tasks | OpenRouter / Google Flash |
+| **Advisor** | Tim | PA agent, meeting minutes, schedule management | OpenRouter / Google Flash |
+| **Tracker** | Tim | ClickUp agent, task and project tracking | OpenRouter / Google Flash |
+| **Muse** | Tim | Brainstorm agent, creative ideation | OpenRouter / Google Flash |
+| **Scout** | Tim | Job agent, job hunting, applications, market scanning | OpenRouter / Google Flash |
+| **Forge** | Tim | Builder agent, infrastructure, deployments, automation | Local (Qwen 3.6 / Gemma 4) |
+| **Ledger** | Tim | Finance agent, personal finances, budgeting | OpenRouter / Google Flash |
+| **Pulse** | Tim | Market agent, global markets, trends, analysis | OpenRouter / Google Flash |
+| **Beacon** | Tim | News agent, global news aggregation and summaries | OpenRouter / Google Flash |
+| **Lens** | Tim | Document agent, document analysis, report generation | OpenRouter / Google Flash |
+| **Sentinel** | Tim | Compliance agent, industry compliance, regulatory checks | OpenRouter / Google Flash |
 
 ### Tim Capabilities
 - Voice TTS + wake word detection ("Agent Tim")
@@ -75,7 +85,9 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 - Browser automation
 - Apple integrations (Notes, Reminders, iMessage, Find My)
 
-**How models get picked:** Each agent grabs Qwen 3.6 or Gemma 4 depending on what it's doing. Heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
+### Docker
+
+I discovered Docker when I installed Hermes for the first time. Realized I could run Hermes as a Docker image, not just locally. That changed everything. Started running all the coding harnesses (Codex, Open Code, Claude Code) and Hermes itself inside Docker containers. Keeps files safe and secure from AI APIs. API keys only live inside containers, never on the host machine.
 
 All connected over **Tailscale**. I access everything through SSH, even from my laptop at college.
 
@@ -94,7 +106,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 - **March 2026** — Discovered Paperclip. Started building named, specialised agents for every use case.
 - **March 2026** — Discovered I could control context size. Mind blown.
 - **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
-- **May 2026** — Open Claw was overkill. Switched to Hermes. Dived into llama.cpp flags, installed vLLM on Tim.
+- **May 2026** — Open Claw was overkill. Switched to Hermes. Discovered Docker. Dived into llama.cpp flags, installed vLLM on Tim.
 - **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **May to July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.

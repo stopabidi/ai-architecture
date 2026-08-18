@@ -64,6 +64,17 @@ Every agent, every inference, every model. I access it all **through SSH over Ta
 
 Quickly realized Open Claw was overkill for my use case. So I switched to **Hermes**, no research, no hesitation, just went for it.
 
+### Docker
+
+When I installed Hermes, I discovered **Docker**. Realized I could run Hermes as a Docker image, not just install it locally. That changed everything. Started running all the coding harnesses — Codex, Open Code, Claude Code — and Hermes itself inside Docker containers.
+
+Docker keeps files safe and secure from AI APIs. API keys only live inside the containers, never on the host machine. When an agent needs a cloud model for lightweight tasks, it uses OpenRouter or Google Flash, but the keys stay locked inside Docker. Local inference agents (the orchestrators and coders) never touch an API at all — they run straight off Pandora's GPU.
+
+That's the split:
+- **Orchestrators and managers** → local AI (Qwen 3.6 35B)
+- **Coders** → local AI (Qwen 3.6 35B)
+- **Specialised agents** → OpenRouter or Google Flash, inside Docker containers
+
 While using Hermes, started discovering the ecosystem. So many different agents out there, nano claw, small claw, pie claw, this claw, that claw. Every week something new appeared. But Hermes was the one that stuck.
 
 And then I hit a wall: needed **custom skills**. The built-in stuff wasn't enough. Wanted my agents to do specific things, things no one had written a skill for yet.
@@ -74,28 +85,28 @@ So I learned. Properly. Spent **two months** just learning. YouTube videos, tuto
 
 Once Paperclip showed me what structured multi-agent systems could look like, I started naming and scoping every agent for a specific job:
 
-| Agent | Machine | Role |
-|-------|---------|------|
-| **Hermes** | Pandora | Chief Orchestrator. Delegates tasks via Telegram and WhatsApp. The brain of the operation. |
-| **Frankie** | Pandora | Worker. Picks up tasks from the Kanban queue and executes them. |
-| **Helios** | Pandora | Analyst. Deep reasoning, research, complex problem solving. |
-| **Pi** | Pandora | Specialist. Creative and niche tasks that need a lighter touch. |
-| **OpenCode** | Pandora | Coder. Code review, debugging, building software. |
-| **Super Sage** | Pandora | Strategic planner and troubleshooter. Uses Claude API hooked to Pi agent for deep code analysis. Analyzes problems, plans solutions, guides every other agent. The one that thinks before anyone acts. |
-| **Agent Tim** | Tim | Chief Orchestrator on the MacBook. Coordinates across all Tim-based agents. |
-| **Sentry** | Tim | Monitor. Watches for alerts, system health, watchdog tasks. |
-| **Advisor** | Tim | PA agent. Takes minutes of meetings, manages my schedule. |
-| **Tracker** | Tim | ClickUp agent. Task management, project tracking. |
-| **Muse** | Tim | Brainstorm agent. Creative ideation, idea generation. |
-| **Scout** | Tim | Job agent. Job hunting, applications, market scanning. |
-| **Forge** | Tim | Builder agent. Infrastructure, deployments, automation. |
-| **Ledger** | Tim | Finance agent. Personal finances, budgeting, tracking. |
-| **Pulse** | Tim | Market agent. Global markets, trends, analysis. |
-| **Beacon** | Tim | News agent. Global news aggregation and summaries. |
-| **Lens** | Tim | Document agent. Document analysis, report generation. |
-| **Sentinel** | Tim | Compliance agent. Industry compliance, regulatory checks. |
+| Agent | Machine | Role | Inference |
+|-------|---------|------|-----------|
+| **Hermes** | Pandora | Chief Orchestrator. Delegates tasks via Telegram and WhatsApp. The brain of the operation. | Local (Qwen 3.6 35B) |
+| **Frankie** | Pandora | Worker. Picks up tasks from the Kanban queue and executes them. | Local (Qwen 3.6) |
+| **Helios** | Pandora | Analyst. Deep reasoning, research, complex problem solving. | Local (Qwen 3.6 35B) |
+| **Pi** | Pandora | Specialist. Creative and niche tasks that need a lighter touch. | Local (Gemma 4 12B) |
+| **OpenCode** | Pandora | Coder. Code review, debugging, building software. | Local (Qwen 3.6 35B) |
+| **Super Sage** | Pandora | Strategic planner and troubleshooter. Uses Claude API hooked to Pi agent for deep code analysis. Analyzes problems, plans solutions, guides every other agent. The one that thinks before anyone acts. | Claude API + Gemma 4 12B |
+| **Agent Tim** | Tim | Chief Orchestrator on the MacBook. Coordinates across all Tim-based agents. | Local (Qwen 3.6 / Gemma 4) |
+| **Sentry** | Tim | Monitor. Watches for alerts, system health, watchdog tasks. | OpenRouter / Google Flash |
+| **Advisor** | Tim | PA agent. Takes minutes of meetings, manages my schedule. | OpenRouter / Google Flash |
+| **Tracker** | Tim | ClickUp agent. Task management, project tracking. | OpenRouter / Google Flash |
+| **Muse** | Tim | Brainstorm agent. Creative ideation, idea generation. | OpenRouter / Google Flash |
+| **Scout** | Tim | Job agent. Job hunting, applications, market scanning. | OpenRouter / Google Flash |
+| **Forge** | Tim | Builder agent. Infrastructure, deployments, automation. | Local (Qwen 3.6 / Gemma 4) |
+| **Ledger** | Tim | Finance agent. Personal finances, budgeting, tracking. | OpenRouter / Google Flash |
+| **Pulse** | Tim | Market agent. Global markets, trends, analysis. | OpenRouter / Google Flash |
+| **Beacon** | Tim | News agent. Global news aggregation and summaries. | OpenRouter / Google Flash |
+| **Lens** | Tim | Document agent. Document analysis, report generation. | OpenRouter / Google Flash |
+| **Sentinel** | Tim | Compliance agent. Industry compliance, regulatory checks. | OpenRouter / Google Flash |
 
-Each one runs locally. Each one picks Qwen 3.6 or Gemma 4 based on what it does. Hermes delegates, Frankie executes, Helios reasons, Super Sage thinks and plans, Scout hunts, Advisor schedules, Beacon reads the news. Not one AI doing everything. A system of specialists.
+Each one runs locally or through Docker containers. Hermes delegates, Frankie executes, Helios reasons, Super Sage thinks and plans, Scout hunts, Advisor schedules, Beacon reads the news. Not one AI doing everything. A system of specialists.
 
 ### Building the Skills
 
@@ -105,7 +116,7 @@ That's when I stumbled into **Kanban boards**. Realized I could use them to mana
 
 But then realized something: agentic systems like Hermes were great for general tasks, but for **strictly coding**, I needed something purpose-built. Something in the scope of actual software development.
 
-So I installed **Codex**, **Open Code**, and **Claude Code**, all three at once. Hooked them all up to my local AI. Started benchmarking them side by side, testing which one could actually write code, review PRs, and handle real development workflows. Running all three simultaneously, comparing outputs, finding strengths and weaknesses.
+So I installed **Codex**, **Open Code**, and **Claude Code**, all three at once inside Docker containers. Hooked them all up to my local AI. Started benchmarking them side by side, testing which one could actually write code, review PRs, and handle real development workflows. Running all three simultaneously, comparing outputs, finding strengths and weaknesses.
 
 That's when I stopped being a user and started being someone who could evaluate tools. Wasn't just following tutorials anymore, was making informed decisions about what worked and what didn't.
 
@@ -184,6 +195,11 @@ graph TB
         TR[Transcription]
         CU[Computer Use]
     end
+    subgraph D[Docker Containers]
+        OR[OpenRouter API]
+        GF[Google Flash API]
+        CA[Claude API]
+    end
     TS[Tailscale] --- P
     TS --- T
     TS --- Phone
@@ -194,6 +210,7 @@ graph TB
     LLM --- OC
     SS -->|plans & guides| H
     SS -->|analyzes code| OC
+    D ---|API keys inside containers| T
 ```
 
 ## Lessons
@@ -206,6 +223,7 @@ graph TB
 - **Tailscale makes it mobile.** Your desktop's power, anywhere you go.
 - **SSH + Tailscale open every door.** Two machines feel like one.
 - **Headless is the way.** Disconnect the monitor, dedicate the GPU to inference.
+- **Docker keeps things safe.** API keys stay in containers, never on the host.
 - **Paperclip changes how you think about agents.** Named agents with jobs feel different than anonymous workers.
 - **Every agent needs a brain behind it.** Super Sage with Claude API changed how I do code analysis.
 - **Custom skills change everything.** Once you can write your own, the possibilities multiply.
