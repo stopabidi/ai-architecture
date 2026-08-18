@@ -68,12 +68,13 @@ Quickly realized Open Claw was overkill for my use case. So I switched to **Herm
 
 When I installed Hermes, I discovered **Docker**. Realized I could run Hermes as a Docker image, not just install it locally. That changed everything. Started running all the coding harnesses — Codex, Open Code, Claude Code — and Hermes itself inside Docker containers.
 
-Docker keeps files safe and secure from AI APIs. API keys only live inside the containers, never on the host machine. When an agent needs a cloud model for lightweight tasks, it uses OpenRouter or Google Flash, but the keys stay locked inside Docker. Local inference agents (the orchestrators and coders) never touch an API at all — they run straight off Pandora's GPU.
+Docker keeps files safe and secure from AI APIs. API keys only live inside the containers, never on the host machine. When an agent needs a cloud model, the key stays locked inside Docker. Local inference agents never touch an API at all — they run straight off Pandora's GPU.
 
-That's the split:
-- **Orchestrators and managers** → local AI (Qwen 3.6 35B)
-- **Coders** → local AI (Qwen 3.6 35B)
-- **Specialised agents** → OpenRouter or Google Flash, inside Docker containers
+The inference split:
+- **Hermes instances** (orchestrators) — Gemma 4 26B-A4B or Qwen 3.6 35B-A3B
+- **Specialised agents** — dense local models, Qwen 3.6 27B
+- **Planner and technical agent** (Super Sage) — Claude API + OpenRouter, inside Docker
+- **Briefs and news** — Google Flash API hooked to a Hermes profile, inside Docker
 
 While using Hermes, started discovering the ecosystem. So many different agents out there, nano claw, small claw, pie claw, this claw, that claw. Every week something new appeared. But Hermes was the one that stuck.
 
@@ -81,32 +82,36 @@ And then I hit a wall: needed **custom skills**. The built-in stuff wasn't enoug
 
 So I learned. Properly. Spent **two months** just learning. YouTube videos, tutorials, the Claw Hub, experimenting with Hermes day in and day out. Figured out how to write custom skills from scratch. How to package them, chain them, make agents do exactly what I needed.
 
+### Telegram Group Chats
+
+I have **multiple group chats with my agents on Telegram**. Each group chat is a different agent or team of agents. Hermes handles the routing. I can talk to any agent directly through its own group chat, or let Hermes orchestrate across them. It's how I manage everything from my phone — briefs come in through one chat, market updates through another, project tracking through a third. All local, all orchestrated, all accessible from anywhere.
+
 ### The Named Agents
 
 Once Paperclip showed me what structured multi-agent systems could look like, I started naming and scoping every agent for a specific job:
 
 | Agent | Machine | Role | Inference |
 |-------|---------|------|-----------|
-| **Hermes** | Pandora | Chief Orchestrator. Delegates tasks via Telegram and WhatsApp. The brain of the operation. | Local (Qwen 3.6 35B) |
-| **Frankie** | Pandora | Worker. Picks up tasks from the Kanban queue and executes them. | Local (Qwen 3.6) |
-| **Helios** | Pandora | Analyst. Deep reasoning, research, complex problem solving. | Local (Qwen 3.6 35B) |
-| **Pi** | Pandora | Specialist. Creative and niche tasks that need a lighter touch. | Local (Gemma 4 12B) |
-| **OpenCode** | Pandora | Coder. Code review, debugging, building software. | Local (Qwen 3.6 35B) |
-| **Super Sage** | Pandora | Strategic planner and troubleshooter. Uses Claude API hooked to Pi agent for deep code analysis. Analyzes problems, plans solutions, guides every other agent. The one that thinks before anyone acts. | Claude API + Gemma 4 12B |
-| **Agent Tim** | Tim | Chief Orchestrator on the MacBook. Coordinates across all Tim-based agents. | Local (Qwen 3.6 / Gemma 4) |
-| **Sentry** | Tim | Monitor. Watches for alerts, system health, watchdog tasks. | OpenRouter / Google Flash |
-| **Advisor** | Tim | PA agent. Takes minutes of meetings, manages my schedule. | OpenRouter / Google Flash |
-| **Tracker** | Tim | ClickUp agent. Task management, project tracking. | OpenRouter / Google Flash |
-| **Muse** | Tim | Brainstorm agent. Creative ideation, idea generation. | OpenRouter / Google Flash |
-| **Scout** | Tim | Job agent. Job hunting, applications, market scanning. | OpenRouter / Google Flash |
-| **Forge** | Tim | Builder agent. Infrastructure, deployments, automation. | Local (Qwen 3.6 / Gemma 4) |
-| **Ledger** | Tim | Finance agent. Personal finances, budgeting, tracking. | OpenRouter / Google Flash |
-| **Pulse** | Tim | Market agent. Global markets, trends, analysis. | OpenRouter / Google Flash |
-| **Beacon** | Tim | News agent. Global news aggregation and summaries. | OpenRouter / Google Flash |
-| **Lens** | Tim | Document agent. Document analysis, report generation. | OpenRouter / Google Flash |
-| **Sentinel** | Tim | Compliance agent. Industry compliance, regulatory checks. | OpenRouter / Google Flash |
+| **Hermes** | Pandora | Chief Orchestrator. Delegates tasks via Telegram group chats and WhatsApp. The brain of the operation. | Gemma 4 26B-A4B / Qwen 3.6 35B-A3B |
+| **Frankie** | Pandora | Worker. Picks up tasks from the Kanban queue and executes them. | Qwen 3.6 27B |
+| **Helios** | Pandora | Analyst. Deep reasoning, research, complex problem solving. | Qwen 3.6 27B |
+| **Pi** | Pandora | Specialist. Creative and niche tasks that need a lighter touch. | Qwen 3.6 27B |
+| **OpenCode** | Pandora | Coder. Code review, debugging, building software. | Qwen 3.6 35B |
+| **Super Sage** | Pandora | Strategic planner and troubleshooter. Uses Claude API hooked to Pi agent for deep code analysis. Analyzes problems, plans solutions, guides every other agent. The one that thinks before anyone acts. | Claude API + OpenRouter |
+| **Agent Tim** | Tim | Chief Orchestrator on the MacBook. Coordinates across all Tim-based agents. | Gemma 4 26B-A4B / Qwen 3.6 35B-A3B |
+| **Sentry** | Tim | Monitor. Watches for alerts, system health, watchdog tasks. | Qwen 3.6 27B |
+| **Advisor** | Tim | PA agent. Takes minutes of meetings, manages my schedule. | Qwen 3.6 27B |
+| **Tracker** | Tim | ClickUp agent. Task management, project tracking. | Qwen 3.6 27B |
+| **Muse** | Tim | Brainstorm agent. Creative ideation, idea generation. | Qwen 3.6 27B |
+| **Scout** | Tim | Job agent. Job hunting, applications, market scanning. | Qwen 3.6 27B |
+| **Forge** | Tim | Builder agent. Infrastructure, deployments, automation. | Qwen 3.6 27B |
+| **Ledger** | Tim | Finance agent. Personal finances, budgeting, tracking. | Qwen 3.6 27B |
+| **Pulse** | Tim | Market agent. Global markets, trends, analysis. | Qwen 3.6 27B |
+| **Beacon** | Tim | News agent. Global news via Google Flash API. | Google Flash API |
+| **Lens** | Tim | Document agent. Document analysis, report generation. | Qwen 3.6 27B |
+| **Sentinel** | Tim | Compliance agent. Industry compliance, regulatory checks. | Qwen 3.6 27B |
 
-Each one runs locally or through Docker containers. Hermes delegates, Frankie executes, Helios reasons, Super Sage thinks and plans, Scout hunts, Advisor schedules, Beacon reads the news. Not one AI doing everything. A system of specialists.
+Each one runs locally or through Docker containers. Hermes delegates through Telegram group chats, Frankie executes, Helios reasons, Super Sage thinks and plans, Scout hunts, Advisor schedules, Beacon reads the news. Not one AI doing everything. A system of specialists.
 
 ### Building the Skills
 
@@ -150,8 +155,10 @@ Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 - **Apple integrations** — Notes, Reminders, iMessage, Find My
 
 **Pandora grows:**
-- All agents dynamically switch between Qwen 3.6 and Gemma 4 based on task type
-- Reasoning-heavy workloads go to the bigger model, fast tasks stay light
+- All specialised agents run on Qwen 3.6 27B
+- Hermes instances use Gemma 4 26B-A4B or Qwen 3.6 35B-A3B
+- Planner and technical agent use Claude API + OpenRouter
+- Briefs and news come from Google Flash API
 
 ## Phase 7: First Real Project (Late 2026)
 My professor at Cardiff gave me my first real opportunity: **build a WhatsApp RAG bot for him**. Professor Joe O'Mahoney has a lot of colleagues, CEOs and industry experts, who keep asking him about his work and concepts from his published consulting books. He wanted that automated. That's what I built.
@@ -168,38 +175,39 @@ graph TB
     subgraph P[Pandora · 7800X3D · 5070Ti]
         LLM[llama-server :8888]
         VEC[ChromaDB :8100]
-        H[Hermes · Orchestrator]
-        F[Frankie · Worker]
-        HE[Helios · Analyst]
-        PI[Pi · Specialist]
-        OC[OpenCode · Coder]
-        SS[Super Sage · Planner]
+        H[Hermes · Orchestrator<br>Gemma4 26B / Qwen3.6 35B]
+        F[Frankie · Worker<br>Qwen3.6 27B]
+        HE[Helios · Analyst<br>Qwen3.6 27B]
+        PI[Pi · Specialist<br>Qwen3.6 27B]
+        OC[OpenCode · Coder<br>Qwen3.6 35B]
+        SS[Super Sage · Planner<br>Claude API + OpenRouter]
         KB[Kanban Board]
         OD[Odysseus :7000]
         NC[Nextcloud :8081]
     end
     subgraph T[Tim · MacBook M2]
-        AT[Agent Tim · Orchestrator]
-        SN[Sentry · Monitor]
-        AD[Advisor · PA]
-        TK[Tracker · ClickUp]
-        MU[Muse · Brainstorm]
-        SC[Scout · Job Hunt]
-        FO[Forge · Builder]
-        LG[Ledger · Finance]
-        PL[Pulse · Markets]
-        BC[Beacon · News]
-        LN[Lens · Documents]
-        SE[Sentinel · Compliance]
+        AT[Agent Tim · Orchestrator<br>Gemma4 26B / Qwen3.6 35B]
+        SN[Sentry · Monitor<br>Qwen3.6 27B]
+        AD[Advisor · PA<br>Qwen3.6 27B]
+        TK[Tracker · ClickUp<br>Qwen3.6 27B]
+        MU[Muse · Brainstorm<br>Qwen3.6 27B]
+        SC[Scout · Job Hunt<br>Qwen3.6 27B]
+        FO[Forge · Builder<br>Qwen3.6 27B]
+        LG[Ledger · Finance<br>Qwen3.6 27B]
+        PL[Pulse · Markets<br>Qwen3.6 27B]
+        BC[Beacon · News<br>Google Flash]
+        LN[Lens · Documents<br>Qwen3.6 27B]
+        SE[Sentinel · Compliance<br>Qwen3.6 27B]
         VO[Voice + TTS]
         TR[Transcription]
         CU[Computer Use]
     end
     subgraph D[Docker Containers]
-        OR[OpenRouter API]
-        GF[Google Flash API]
+        OR[OpenRouter]
+        GF[Google Flash]
         CA[Claude API]
     end
+    TG[Telegram Group Chats] --- H
     TS[Tailscale] --- P
     TS --- T
     TS --- Phone
@@ -227,6 +235,7 @@ graph TB
 - **Paperclip changes how you think about agents.** Named agents with jobs feel different than anonymous workers.
 - **Every agent needs a brain behind it.** Super Sage with Claude API changed how I do code analysis.
 - **Custom skills change everything.** Once you can write your own, the possibilities multiply.
+- **Telegram group chats make it real.** Talking to agents through chat feels like having a team.
 - **Self-hosting is addictive.** Once you control everything, you don't want to go back.
 - **Voice changes everything.** Talking to your agent feels different than typing.
 - **Local AI is enough.** No cloud APIs needed when your GPU does the work.

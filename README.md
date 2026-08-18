@@ -26,7 +26,7 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 ![System Diagram](ai-architecture.svg)
 
-**Two machines, one tailnet, a bunch of named local AI agents, and way too many containers.**
+**Two machines, one tailnet, a bunch of named AI agents, Telegram group chats, and way too many containers.**
 
 | Machine | Specs | What it does |
 |---------|-------|-------------|
@@ -35,13 +35,18 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 ### How Inference Works
 
-Not everything runs on local hardware. The setup is split by role:
+Every role gets the right model for the job:
 
-- **Orchestrators and managers** (Hermes, Agent Tim, Frankie, Helios, etc.) — local AI on Pandora's GPU
-- **Coders** (OpenCode) — local AI on Pandora's GPU
-- **Specialised agents** (Scout, Advisor, Muse, Beacon, etc.) — OpenRouter or Google Flash API
+- **Hermes instances** (orchestrators) — Gemma 4 26B-A4B or Qwen 3.6 35B-A3B
+- **Specialised agents** — dense local models, Qwen 3.6 27B
+- **Planner and technical agent** (Super Sage) — Claude API + OpenRouter
+- **Briefs and news** — Google Flash API hooked to a Hermes profile
 
-API keys live exclusively inside Docker containers. That way the agents get the flexibility of cloud models for lightweight tasks, but the keys and data stay isolated. Docker was a game changer when I discovered it during the Hermes install, more on that below.
+Everything runs locally on Pandora's GPU except the planner, technical agent, and briefs profile which use cloud APIs through Docker containers. API keys only live inside containers, never on the host.
+
+### Telegram
+
+I have **multiple group chats with my agents on Telegram**. Each group chat is a different agent or team of agents. Hermes handles the routing. I can talk to any agent directly, or let Hermes orchestrate across them. It's how I manage everything from my phone.
 
 ### Pandora
 
@@ -58,24 +63,24 @@ API keys live exclusively inside Docker containers. That way the agents get the 
 
 | Agent | Machine | Role | Inference |
 |-------|---------|------|-----------|
-| **Hermes** | Pandora | Chief Orchestrator, delegates tasks via Telegram/WhatsApp | Local (Qwen 3.6 35B) |
-| **Frankie** | Pandora | Worker, handles queued tasks from Kanban board | Local (Qwen 3.6) |
-| **Helios** | Pandora | Analyst, deep reasoning and research | Local (Qwen 3.6 35B) |
-| **Pi** | Pandora | Specialist, creative and niche tasks | Local (Gemma 4 12B) |
-| **OpenCode** | Pandora | Coder, code review, debugging, building | Local (Qwen 3.6 35B) |
-| **Super Sage** | Pandora | Strategic planner, troubleshooter, code analyst. Uses Claude API hooked to Pi agent for deep code analysis. Guides all other agents. | Claude API + Gemma 4 12B |
-| **Agent Tim** | Tim | Chief Orchestrator on MacBook, multi-agent coordination | Local (Qwen 3.6 / Gemma 4) |
-| **Sentry** | Tim | Monitor, alerts, watchdog tasks | OpenRouter / Google Flash |
-| **Advisor** | Tim | PA agent, meeting minutes, schedule management | OpenRouter / Google Flash |
-| **Tracker** | Tim | ClickUp agent, task and project tracking | OpenRouter / Google Flash |
-| **Muse** | Tim | Brainstorm agent, creative ideation | OpenRouter / Google Flash |
-| **Scout** | Tim | Job agent, job hunting, applications, market scanning | OpenRouter / Google Flash |
-| **Forge** | Tim | Builder agent, infrastructure, deployments, automation | Local (Qwen 3.6 / Gemma 4) |
-| **Ledger** | Tim | Finance agent, personal finances, budgeting | OpenRouter / Google Flash |
-| **Pulse** | Tim | Market agent, global markets, trends, analysis | OpenRouter / Google Flash |
-| **Beacon** | Tim | News agent, global news aggregation and summaries | OpenRouter / Google Flash |
-| **Lens** | Tim | Document agent, document analysis, report generation | OpenRouter / Google Flash |
-| **Sentinel** | Tim | Compliance agent, industry compliance, regulatory checks | OpenRouter / Google Flash |
+| **Hermes** | Pandora | Chief Orchestrator, delegates tasks via Telegram group chats and WhatsApp | Gemma 4 26B-A4B / Qwen 3.6 35B-A3B |
+| **Frankie** | Pandora | Worker, handles queued tasks from Kanban board | Qwen 3.6 27B |
+| **Helios** | Pandora | Analyst, deep reasoning and research | Qwen 3.6 27B |
+| **Pi** | Pandora | Specialist, creative and niche tasks | Qwen 3.6 27B |
+| **OpenCode** | Pandora | Coder, code review, debugging, building | Qwen 3.6 35B |
+| **Super Sage** | Pandora | Strategic planner, troubleshooter, code analyst. Uses Claude API hooked to Pi agent for deep code analysis. Guides all other agents. | Claude API + OpenRouter |
+| **Agent Tim** | Tim | Chief Orchestrator on MacBook, multi-agent coordination | Gemma 4 26B-A4B / Qwen 3.6 35B-A3B |
+| **Sentry** | Tim | Monitor, alerts, watchdog tasks | Qwen 3.6 27B |
+| **Advisor** | Tim | PA agent, meeting minutes, schedule management | Qwen 3.6 27B |
+| **Tracker** | Tim | ClickUp agent, task and project tracking | Qwen 3.6 27B |
+| **Muse** | Tim | Brainstorm agent, creative ideation | Qwen 3.6 27B |
+| **Scout** | Tim | Job agent, job hunting, applications, market scanning | Qwen 3.6 27B |
+| **Forge** | Tim | Builder agent, infrastructure, deployments, automation | Qwen 3.6 27B |
+| **Ledger** | Tim | Finance agent, personal finances, budgeting | Qwen 3.6 27B |
+| **Pulse** | Tim | Market agent, global markets, trends, analysis | Qwen 3.6 27B |
+| **Beacon** | Tim | News agent, global news via Google Flash API | Google Flash API |
+| **Lens** | Tim | Document agent, document analysis, report generation | Qwen 3.6 27B |
+| **Sentinel** | Tim | Compliance agent, industry compliance, regulatory checks | Qwen 3.6 27B |
 
 ### Tim Capabilities
 - Voice TTS + wake word detection ("Agent Tim")
@@ -111,7 +116,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 - **May to July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
 - **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
-- **September 2026** — Architecture docs rewritten. Full agent stack documented.
+- **September 2026** — Architecture docs rewritten. Full agent stack documented. Telegram group chats with agents.
 
 ---
 
