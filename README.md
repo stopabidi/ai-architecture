@@ -108,15 +108,15 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 - **September 2025** — Moved to the UK for my MBM at Cardiff. Saw the job market. 140 applications per vacancy. Ghost jobs everywhere. Got scared. Decided to build a marketable skill.
 - **February 2026** — First GGUF download. Had zero idea what a "quant" was. Learned everything from Reddit.
-- **March 2026** — Discovered Paperclip. Started building named, specialised agents for every use case.
-- **March 2026** — Discovered I could control context size. Mind blown.
-- **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
-- **May 2026** — Open Claw was overkill. Switched to Hermes. Discovered Docker. Dived into llama.cpp flags, installed vLLM on Tim.
-- **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
-- **May to July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
-- **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
-- **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
-- **September 2026** — Architecture docs rewritten. Full agent stack documented. Telegram group chats with agents.
+- **December 2025** — Switched from tinkering to agentic AI. Discovered Paperclip. Started building named, specialised agents.
+- **Late 2025** — Discovered I could control context size. Mind blown.
+- **January 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
+- **February 2026** — Open Claw was overkill. Switched to Hermes a month later. Discovered Docker. Dived into llama.cpp flags, installed vLLM on Tim.
+- **February 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
+- **February to April 2026** — Hermes became the biggest milestone. Months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
+- **March 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
+- **Mid 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
+- **September 2026** — Architecture docs rewritten. Full agent stack documented.
 
 ---
 

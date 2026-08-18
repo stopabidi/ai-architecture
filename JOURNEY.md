@@ -37,7 +37,7 @@ But then I wanted the **power of my desktop with the mobility of my laptop**. Di
 
 That changed everything. My laptop was no longer limited by its own hardware. It was a window into Pandora's brain.
 
-## Phase 3: Going Deeper (Mid-2026)
+## Phase 3: Going Deeper (January 2026)
 Then **Open Claw** released. Was one of the early adopters, no hesitation. Factory-reset Tim, installed Open Claw, started using it. Was bewildered. Shocked, even. This was real. Running a local AI agent on my laptop.
 
 But all of it was still running on local LLMs, models served from LM Studio on Pandora. Tim was just the interface. The brains were always local.
@@ -53,8 +53,8 @@ Then I learned that on Apple Silicon, **vLLM** works better. So I installed **vL
 - Installed vLLM on Tim for better Apple Silicon performance
 - Studied llama.cpp flags in depth
 
-## Phase 4: Agents (March 2026 onwards)
-This is where things accelerated. Discovered **Paperclip** in March and it changed how I thought about everything. Paperclip lets you run a multi-agent system as a company, with org charts, budgets, governance, and agent roles. That's when I started building **named, specialised agents for every use case**. I carefully planned the whole architecture out, not randomly.
+## Phase 4: Agents (December 2025 onwards)
+Tinkered with local models until December, then switched to agentic AI. Discovered **Paperclip** and it changed how I thought about everything. Paperclip lets you run a multi-agent system as a company, with org charts, budgets, governance, and agent roles. That's when I started building **named, specialised agents for every use case**. I carefully planned the whole architecture out, not randomly.
 
 Then I installed Hermes and it became the single biggest milestone in this entire journey. Never worked with agentic systems before. Harnesses that could push commands through the terminal, actually do tasks on the computer. This wasn't just chatting with an AI anymore. This was an AI that could *act*.
 
@@ -125,7 +125,7 @@ So I installed **Codex**, **Open Code**, and **Claude Code**, all three at once 
 
 That's when I stopped being a user and started being someone who could evaluate tools. Wasn't just following tutorials anymore, was making informed decisions about what worked and what didn't.
 
-## Phase 5: Self-Hosting & Bots (July 2026)
+## Phase 5: Self-Hosting & Bots (Mid 2026)
 Now I run everything myself:
 
 | Service | What it does |
@@ -142,7 +142,7 @@ Now I run everything myself:
 - Started building bots that could answer questions from uploaded files
 - RAG pipeline: documents, embeddings, ChromaDB, answers
 
-## Phase 6: The Full Stack (August 2026)
+## Phase 6: The Full Stack (Mid-Late 2026)
 Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 
 **Tim gets serious:**
