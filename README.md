@@ -2,7 +2,7 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my MBM (Master of Business Management) at Cardiff University. Second I got here, I saw how bad the job market was. A King's College paper had just come out showing every vacancy gets 280 to 300 applications, and some of those vacancies aren't even real. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
+I came to the UK to start my MBM (Master of Business Management) at Cardiff University. Second I got here, I saw how bad the job market was. The Institute of Student Employers reported 140 applications per graduate vacancy, graduate hiring fell 8%, and a third of all job listings were ghost jobs posted with no intent to hire. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
 
 That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
@@ -106,7 +106,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 ## Highlights
 
-- **September 2025** — Moved to the UK for my MBM at Cardiff. Saw the job market. 280-300 applications per vacancy. Got scared. Decided to build a marketable skill.
+- **September 2025** — Moved to the UK for my MBM at Cardiff. Saw the job market. 140 applications per vacancy. Ghost jobs everywhere. Got scared. Decided to build a marketable skill.
 - **February 2026** — First GGUF download. Had zero idea what a "quant" was. Learned everything from Reddit.
 - **March 2026** — Discovered Paperclip. Started building named, specialised agents for every use case.
 - **March 2026** — Discovered I could control context size. Mind blown.
