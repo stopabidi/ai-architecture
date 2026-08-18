@@ -5,7 +5,7 @@ How I went from zero code to a multi-machine, multi-agent AI system in under a y
 ---
 
 ## Prologue: The Beginning (September 2025)
-Moved to the UK to start my degree at Cardiff University. The second I got here, I saw how bad the job market was. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. I was scared.
+Moved to the UK to start my MBM (Master of Business Management) at Cardiff University. The second I got here, I saw how bad the job market was. A King's College paper had just come out showing every vacancy gets 280 to 300 applications, and some of those vacancies aren't even real. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have.
 
 I had a gaming PC: 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there doing nothing most of the time.
 
@@ -54,7 +54,7 @@ Then I learned that on Apple Silicon, **vLLM** works better. So I installed **vL
 - Studied llama.cpp flags in depth
 
 ## Phase 4: Agents (March 2026 onwards)
-This is where things accelerated. Discovered **Paperclip** in March and it changed how I thought about everything. Paperclip lets you run a multi-agent system as a company, with org charts, budgets, governance, and agent roles. That's when I started building **named, specialised agents for every use case**.
+This is where things accelerated. Discovered **Paperclip** in March and it changed how I thought about everything. Paperclip lets you run a multi-agent system as a company, with org charts, budgets, governance, and agent roles. That's when I started building **named, specialised agents for every use case**. I carefully planned the whole architecture out, not randomly.
 
 Then I installed Hermes and it became the single biggest milestone in this entire journey. Never worked with agentic systems before. Harnesses that could push commands through the terminal, actually do tasks on the computer. This wasn't just chatting with an AI anymore. This was an AI that could *act*.
 
@@ -143,7 +143,7 @@ Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 - Reasoning-heavy workloads go to the bigger model, fast tasks stay light
 
 ## Phase 7: First Real Project (Late 2026)
-My professor at Cardiff gave me my first real opportunity: **curate a custom AI solution for him**. A WhatsApp RAG bot that answers questions from his published consulting work. A real project with a real client, not just tinkering.
+My professor at Cardiff gave me my first real opportunity: **build a WhatsApp RAG bot for him**. Professor Joe O'Mahoney has a lot of colleagues, CEOs and industry experts, who keep asking him about his work and concepts from his published consulting books. He wanted that automated. That's what I built.
 
 I used my **multi-agent system** to pull it off. Hermes coordinated. The agents ran inference. The pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. Learned more from that one project than from months of experimentation.
 

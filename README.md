@@ -2,7 +2,7 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my degree at Cardiff University. Second I got here, I saw how bad the job market was. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. I was scared. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
+I came to the UK to start my MBM (Master of Business Management) at Cardiff University. Second I got here, I saw how bad the job market was. A King's College paper had just come out showing every vacancy gets 280 to 300 applications, and some of those vacancies aren't even real. I was scared. A degree on its own wasn't going to set me apart. I needed to build something, a marketable skill that most people didn't have. So I looked at the gaming PC I'd brought with me and thought, let me see what this thing can do.
 
 That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
@@ -89,7 +89,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 ## Highlights
 
-- **September 2025** — Moved to the UK for my degree at Cardiff. Saw the job market. Got scared. Decided to build a marketable skill.
+- **September 2025** — Moved to the UK for my MBM at Cardiff. Saw the job market. 280-300 applications per vacancy. Got scared. Decided to build a marketable skill.
 - **February 2026** — First GGUF download. Had zero idea what a "quant" was. Learned everything from Reddit.
 - **March 2026** — Discovered Paperclip. Started building named, specialised agents for every use case.
 - **March 2026** — Discovered I could control context size. Mind blown.
@@ -98,9 +98,8 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 - **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **May to July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
-- **August 2026** — Professor bot built (RAG from arXiv). Tim gets multiple profiles, voice, transcription, computer use.
+- **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
 - **September 2026** — Architecture docs rewritten. Full agent stack documented.
-- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. In demo mode with the client now.
 
 ---
 
@@ -108,6 +107,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 
 | Repo | What it does |
 |------|-------------|
+| [AskJoe](https://github.com/stopabidi/ai-architecture) | WhatsApp RAG bot for Professor Joe O'Mahoney's consulting work |
 | [Professor](https://github.com/stopabidi/professor-whatsapp-bot) | RAG-powered arXiv research bot |
 | [AI Architecture](https://github.com/stopabidi/ai-architecture) | This repo, system docs and diagrams |
 
