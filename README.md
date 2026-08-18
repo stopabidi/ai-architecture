@@ -2,9 +2,9 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my degree at Cardiff University. Quickly realized a degree alone wasn't going to cut it — I needed to upskill. I had a gaming PC sitting there, so I thought, why not try learning about AI?
+I came to the UK to start my degree at Cardiff University. Pretty quickly realized a degree on its own wasn't going to cut it — I needed to learn something practical. Had a gaming PC with a decent GPU sitting there, so I thought, let me see what all the AI hype is about.
 
-That curiosity turned into a year of tinkering, breaking things, learning, and building. This repo is the map of that journey.
+That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
 ---
 
@@ -15,7 +15,7 @@ Phase 1  ──  Gaming PC → "wait, this GPU is good for AI?"
 Phase 2  ──  LM Studio → Ollama → Tailscale → mobility
 Phase 3  ──  Open Claw → llama.cpp → vLLM → going deeper
 Phase 4  ──  Hermes → custom skills → agents → Kanban → n8n
-Phase 5  ──  Self-hosting everything → WhatsApp bots → full stack
+Phase 5  ──  Self-hosting everything → bots → full stack
 Phase 6  ──  Voice, vision, transcription, autonomous agents
 Phase 7  ──  First real project → Paperclip → structured AI company (you are here)
 ```
@@ -66,16 +66,15 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 - Browser automation
 - Apple integrations (Notes, Reminders, iMessage, Find My)
 
-**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing — heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally on the machines.
+**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing — heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
 
 All connected over **Tailscale**. I access everything through SSH, even from my laptop at college.
 
 ---
 
-## The Full Story
 ## An Agent for Every Use Case
 
-What started as "let me try running a model" turned into specialised agents for everything:
+What started as "let me try running a model" turned into specialised agents for basically everything:
 
 | Agent | What it handles |
 |-------|----------------|
@@ -93,6 +92,9 @@ What started as "let me try running a model" turned into specialised agents for 
 
 All running locally. All orchestrated together. Not one AI doing everything — a system of specialists.
 
+---
+
+## The Full Story
 
 See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my first 7B model in LM Studio to debugging multi-agent Kanban pipelines at 2am.
 
@@ -100,11 +102,11 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my f
 
 ## Highlights
 
-- **September 2025** — Arrived in the UK for my degree at Cardiff University. Realized I needed to upskill.
-- **February 2026** — First GGUF download. Had no idea what a "quant" was. Learned everything from Reddit.
+- **September 2025** — Moved to the UK for my degree at Cardiff. Realized I needed to upskill.
+- **February 2026** — First GGUF download. Had zero idea what a "quant" was. Learned everything from Reddit.
 - **March 2026** — Discovered I could control context size. Mind blown.
 - **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
-- **May 2026** — Open Claw was overkill. Switched to Hermes. Studied llama.cpp flags, installed vLLM on Tim.
+- **May 2026** — Open Claw was overkill. Switched to Hermes. Dived into llama.cpp flags, installed vLLM on Tim.
 - **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **May–July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
