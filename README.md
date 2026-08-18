@@ -2,7 +2,7 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my degree at Cardiff University. Pretty quickly realized a degree on its own wasn't going to cut it — I needed to learn something practical. Had a gaming PC with a decent GPU sitting there, so I thought, let me see what all the AI hype is about.
+I came to the UK to start my degree at Cardiff University. Pretty quickly realized a degree on its own wasn't going to cut it. I needed to learn something practical. Had a gaming PC with a decent GPU sitting there, so I thought, let me see what all the AI hype is about.
 
 That curiosity turned into a year of tinkering, breaking stuff, learning, and building things I didn't know were possible. This repo is the map of that journey.
 
@@ -37,13 +37,13 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 | Category | Service | Details |
 |----------|---------|---------|
-| Inference | llama-server `:8888` | Local LLMs — Qwen 3.6 35B + Qwen 3.5 9B Vision |
+| Inference | llama-server `:8888` | Local LLMs, Qwen 3.6 35B + Qwen 3.5 9B Vision |
 | Vector DB | ChromaDB `:8100` | RAG embeddings for bots and agents |
-| Agent | Hermes | Orchestrator — Qwen 3.6 35B |
-| Agent | Frankie | Worker — Qwen 3.6 (lighter tasks) |
-| Agent | Helios | Analyst — Qwen 3.6 35B |
-| Agent | Pi | Specialist — Gemma 4 12B |
-| Agent | OpenCode | Coder — Qwen 3.6 35B |
+| Agent | Hermes | Orchestrator, Qwen 3.6 35B |
+| Agent | Frankie | Worker, Qwen 3.6 (lighter tasks) |
+| Agent | Helios | Analyst, Qwen 3.6 35B |
+| Agent | Pi | Specialist, Gemma 4 12B |
+| Agent | OpenCode | Coder, Qwen 3.6 35B |
 | Board | Kanban | SQLite multi-agent queue |
 | Workspace | Odysseus `:7000` | OpenWebUI + n8n automation |
 | Self-hosted | Nextcloud `:8081` | File sync |
@@ -61,12 +61,12 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 **Tim also runs:**
 - Voice TTS + wake word detection
 - Live meeting transcription (BlackHole + Whisper)
-- Meeting pipeline (VTT transcripts → MoM documents)
+- Meeting pipeline (VTT transcripts to MoM documents)
 - Computer use (background desktop control)
 - Browser automation
 - Apple integrations (Notes, Reminders, iMessage, Find My)
 
-**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing — heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
+**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing. Heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally.
 
 All connected over **Tailscale**. I access everything through SSH, even from my laptop at college.
 
@@ -90,13 +90,13 @@ What started as "let me try running a model" turned into specialised agents for 
 | Document Agent | Document analysis and reports |
 | Compliance Agent | Industry compliance and regulation |
 
-All running locally. All orchestrated together. Not one AI doing everything — a system of specialists.
+All running locally. All orchestrated together. Not one AI doing everything, a system of specialists.
 
 ---
 
 ## The Full Story
 
-See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my first 7B model in LM Studio to debugging multi-agent Kanban pipelines at 2am.
+See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my first 7B model in LM Studio to debugging multi-agent Kanban pipelines at 2am.
 
 ---
 
@@ -108,11 +108,11 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my f
 - **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
 - **May 2026** — Open Claw was overkill. Switched to Hermes. Dived into llama.cpp flags, installed vLLM on Tim.
 - **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
-- **May–July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
+- **May to July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
 - **August 2026** — Professor bot built (RAG from arXiv). Tim gets multiple profiles, voice, transcription, computer use.
 - **September 2026** — Architecture docs rewritten. Full agent stack documented.
-- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. Discovered Paperclip — hierarchical multi-agent orchestration.
+- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. Discovered Paperclip, hierarchical multi-agent orchestration.
 
 ---
 
@@ -121,7 +121,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my f
 | Repo | What it does |
 |------|-------------|
 | [Professor](https://github.com/stopabidi/professor-whatsapp-bot) | RAG-powered arXiv research bot |
-| [AI Architecture](https://github.com/stopabidi/ai-architecture) | This repo — system docs and diagrams |
+| [AI Architecture](https://github.com/stopabidi/ai-architecture) | This repo, system docs and diagrams |
 
 ---
 
