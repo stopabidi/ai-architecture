@@ -141,6 +141,26 @@ Then I discovered **Paperclip**. An open-source project that lets you run your m
 
 That's where I am now. Taking everything I've learned and scaling it into something structured, governed, and real.
 
+## An Agent for Everything
+
+Looking back, that's what this all led to. I now have an **agent for every use case** — each one purpose-built, each one running locally:
+
+| Agent | What it handles |
+|-------|----------------|
+| PA Agent | Takes minutes of meetings, manages schedule |
+| ClickUp Agent | Task management, project tracking |
+| Brainstorm Agent | Creative ideation, idea generation |
+| Job Agent | Job hunting, applications, market scanning |
+| Coding Agent | Code review, debugging, building |
+| Builder Agent | Infrastructure, deployments, automation |
+| Finance Agent | Personal finances, budgeting, tracking |
+| Market Agent | Global markets, trends, analysis |
+| News Agent | Global news aggregation and summaries |
+| Document Agent | Document analysis, report generation |
+| Compliance Agent | Industry compliance, regulatory checks |
+
+It's not just one AI doing everything anymore. It's a system — specialised agents, each one good at its thing, orchestrated together. That's the goal. That's where this is heading.
+
 ## The Stack Today
 ```mermaid
 graph TB

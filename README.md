@@ -73,6 +73,26 @@ All connected over **Tailscale**. I access everything through SSH, even from my 
 ---
 
 ## The Full Story
+## An Agent for Every Use Case
+
+What started as "let me try running a model" turned into specialised agents for everything:
+
+| Agent | What it handles |
+|-------|----------------|
+| PA Agent | Meeting minutes, schedule management |
+| ClickUp Agent | Task and project tracking |
+| Brainstorm Agent | Creative ideation |
+| Job Agent | Job hunting and applications |
+| Coding Agent | Code review, debugging, building |
+| Builder Agent | Infrastructure and automation |
+| Finance Agent | Finances and budgeting |
+| Market Agent | Global markets and trends |
+| News Agent | Global news aggregation |
+| Document Agent | Document analysis and reports |
+| Compliance Agent | Industry compliance and regulation |
+
+All running locally. All orchestrated together. Not one AI doing everything — a system of specialists.
+
 
 See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my first 7B model in LM Studio to debugging multi-agent Kanban pipelines at 2am.
 
