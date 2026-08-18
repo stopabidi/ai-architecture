@@ -2,9 +2,9 @@
 
 > From zero code to a multi-machine, multi-agent AI system — this repo tracks every step.
 
-I came to the UK to start my degree at Cardiff University. I quickly realized a degree alone wasn't enough — I needed to upskill. I had a gaming PC. So I thought, let's try learning about AI.
+I came to the UK to start my degree at Cardiff University. Quickly realized a degree alone wasn't going to cut it — I needed to upskill. I had a gaming PC sitting there, so I thought, why not try learning about AI?
 
-That curiosity turned into a year-long spiral of tinkering, breaking, learning, and building. This repo is the map of that journey.
+That curiosity turned into a year of tinkering, breaking things, learning, and building. This repo is the map of that journey.
 
 ---
 
@@ -26,7 +26,7 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 
 ![System Diagram](ai-architecture.svg)
 
-**TL;DR:** Two machines, one tailnet, a handful of local AI agents, and way too many containers.
+**Two machines, one tailnet, a bunch of local AI agents, and way too many containers.**
 
 | Machine | Specs | What it does |
 |---------|-------|-------------|
@@ -48,8 +48,6 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 | Workspace | Odysseus `:7000` | OpenWebUI + n8n automation |
 | Self-hosted | Nextcloud `:8081` | File sync |
 | Self-hosted | Immich | Photo management (planned) |
-| Bot | WhatBot v3.5 | WhatsApp document assistant |
-| Bot | WhatBot Telegram | Telegram research assistant |
 | Bot | Professor | RAG-powered arXiv research bot |
 
 ### Tim (MacBook Air M2)
@@ -68,9 +66,9 @@ Phase 7  ──  First real project → Paperclip → structured AI company (you
 - Browser automation
 - Apple integrations (Notes, Reminders, iMessage, Find My)
 
-**How models are chosen:** Each profile picks Qwen 3.6 or Gemma 4 based on what it does — reasoning-heavy tasks go to the bigger model, fast lightweight tasks stay small. Everything runs locally on the machines.
+**How models get picked:** Each profile grabs Qwen 3.6 or Gemma 4 depending on what it's doing — heavy reasoning goes to the bigger model, fast lightweight stuff stays small. Everything runs locally on the machines.
 
-All connected over **Tailscale**. Phone accesses services through the tailnet.
+All connected over **Tailscale**. I access everything through SSH, even from my laptop at college.
 
 ---
 
@@ -81,19 +79,18 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my f
 ---
 
 ## Highlights
-- **September 2026** — Architecture documentation rewritten. Full agent stack documented.
-- **Late 2026** — Built WhatsApp RAG bot for professor. First real project. Discovered Paperclip — hierarchical multi-agent orchestration.
 
 - **September 2025** — Arrived in the UK for my degree at Cardiff University. Realized I needed to upskill.
-- **February 2026** — First GGUF download. No idea what a "quant" was. Learned everything from Reddit.
+- **February 2026** — First GGUF download. Had no idea what a "quant" was. Learned everything from Reddit.
 - **March 2026** — Discovered I could control context size. Mind blown.
 - **April 2026** — Open Claw released. Factory-reset Tim, installed it immediately. Early adopter.
 - **May 2026** — Open Claw was overkill. Switched to Hermes. Studied llama.cpp flags, installed vLLM on Tim.
-- **May 2026** — Disconnected monitor from GPU. Turned Pandora into a headless AI server. Dual-booted, tuned llama.cpp flags, all access via SSH over Tailscale.
+- **May 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **May–July 2026** — Hermes became the biggest milestone. Two months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
-- **July 2026** — Self-hosted services live (Nextcloud, Odysseus). WhatBot v1 on WhatsApp.
-- **August 2026** — WhatBot v3.5, Telegram bot, Professor (RAG from arXiv). Tim gets multiple profiles, voice, transcription, computer use.
-- **September 2026** — Architecture documentation rewritten. Full agent stack documented.
+- **July 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
+- **August 2026** — Professor bot built (RAG from arXiv). Tim gets multiple profiles, voice, transcription, computer use.
+- **September 2026** — Architecture docs rewritten. Full agent stack documented.
+- **Late 2026** — Built WhatsApp RAG bot for my professor. First real project. Discovered Paperclip — hierarchical multi-agent orchestration.
 
 ---
 
@@ -101,10 +98,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline — from running my f
 
 | Repo | What it does |
 |------|-------------|
-| [WhatBot v3.5](https://github.com/stopabidi/whatbot-v3.5) | WhatsApp document assistant — multi-format QA |
-| [WhatBot Telegram](https://github.com/stopabidi/whatbot-telegram-plan) | Telegram research assistant |
 | [Professor](https://github.com/stopabidi/professor-whatsapp-bot) | RAG-powered arXiv research bot |
-| [WhatBot (original)](https://github.com/stopabidi/WhatBot) | First iteration — WhatsApp QA |
 | [AI Architecture](https://github.com/stopabidi/ai-architecture) | This repo — system docs and diagrams |
 
 ---

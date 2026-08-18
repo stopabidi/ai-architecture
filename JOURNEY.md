@@ -5,22 +5,22 @@ How I went from zero code to a multi-machine, multi-agent AI system in under a y
 ---
 
 ## Prologue: The Beginning (September 2025)
-I came to the UK to start my degree at Cardiff University. That's where it started — not with a fascination for AI, but with a realization. I quickly understood that a degree alone wasn't going to be enough. I needed to upskill myself, to learn something practical alongside the academic side.
+I came to the UK to start my degree at Cardiff University. That's where it started — not with some fascination for AI, but with a realization. A degree alone wasn't going to be enough. I needed to upskill, learn something practical alongside the academic side.
 
-I had come here with a gaming PC — 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there, powerful hardware just waiting to be used for something more.
+I had a gaming PC — 7800X3D, RTX 5070Ti, 32GB DDR5. Built it for games, not for AI. But it was sitting there, powerful hardware just gathering dust.
 
 So I thought — okay, let's try learning about AI.
 
 ## Phase 1: The Spark (Late 2025 / Early 2026)
-It started small. I'd use whatever experimental AI tools were available on the internet — web interfaces, free tiers, anything I could get my hands on. Just poking around, seeing what these things could do.
+It started small. I'd poke around whatever experimental AI tools were on the internet — web interfaces, free tiers, anything I could get my hands on. Just seeing what these things could do.
 
 Then I thought — can I run this locally? On my own machine?
 
-I found **LM Studio**. It had a GUI, a chat box right there, no terminal required. That was enough for me to try. I installed it, loaded up a tiny model, and started chatting.
+I found **LM Studio**. It had a GUI, a chat box right there, no terminal required. Good enough for me. I installed it, loaded up a tiny model, and started chatting.
 
 I had no idea what quantization was. I didn't know what context meant. I just typed things and watched responses appear.
 
-Most of what I learned came from **Reddit**. I'd search for my GPU specs, read what other people recommended, copy configurations, try them out. "What model runs best on a 5070Ti?" "What quant should I use?" "Why is my context so slow?" Everything — every setting, every decision — I learned from people who already figured it out. I was completely dependent on the internet's help.
+Most of what I learned came from **Reddit**. I'd search for my GPU specs, read what other people recommended, copy configurations, try them out. "What model runs best on a 5070Ti?" "What quant should I use?" "Why is my context so slow?" Everything — every setting, every decision — I learned from people who'd already figured it out. I was completely dependent on the internet's help.
 
 But it worked. And I wanted more.
 
@@ -29,9 +29,9 @@ LM Studio was great but I wanted more. I discovered **Ollama** — and that chan
 
 I went on a tear. I tried **Meta Llama** models. Then **Mistral**. Then **Gemma**. Then **Qwen 3.6**. Every new model family felt like opening a different door — each one had its own personality, its own strengths.
 
-This is where the obsession really took hold. I started running models on **both machines simultaneously** — Tim and Pandora — just for the sake of it. Not because I needed to. Because I was an enthusiast. Because it was exciting. Because I could.
+This is where the obsession really took hold. I started running models on **both machines simultaneously** — Tim and Pandora — just for the fun of it. Not because I needed to. Because I was an enthusiast. Because it was exciting. Because I could.
 
-I'd have something running on Pandora's GPU while Tim chewed through a different model. Two machines, both humming, both thinking. It felt like I had built something.
+I'd have something running on Pandora's GPU while Tim chewed through a different model. Two machines, both humming, both thinking. It felt like I'd built something real.
 
 But then I wanted the **power of my desktop with the mobility of my laptop**. I didn't want to be stuck at my desk to use AI. I wanted to use it at college, in lectures, wherever. That's when I discovered **Tailscale**. As long as both machines were on the same tailnet, I could route the endpoint and access the AI running on Pandora's GPU through my laptop, anywhere.
 
@@ -107,17 +107,11 @@ Now I run everything myself:
 | 5× Agents | Hermes, Frankie, Helios, Pi, OpenCode |
 | Tailscale | All machines connected |
 
-- **WhatBot v1** — first WhatsApp document assistant
 - Started building bots that could answer questions from uploaded files
 - RAG pipeline: documents → embeddings → ChromaDB → answers
 
 ## Phase 6: The Full Stack (August 2026)
 Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
-
-**WhatsApp Bots:**
-- WhatBot evolved to **v3.5** — multi-format QA (PDFs, Word, Excel, images)
-- **Professor** — RAG-powered research bot. Upload arXiv papers, get grounded answers.
-- **WhatBot Telegram** — research assistant on Telegram
 
 **Tim gets serious:**
 - **Multiple Hermes profiles** — each with a role:
@@ -136,9 +130,16 @@ Everything accelerated. Multiple bots, voice, transcription, autonomous agents.
 - All agents dynamically switch between Qwen 3.6 and Gemma 4 based on task type
 - Reasoning-heavy workloads go to the bigger model, fast tasks stay light
 
-**GitHub projects growing:**
-- 6 repos total across bots and architecture docs
-- Each bot has its own repo with proper README
+## Phase 7: First Real Project & Paperclip (Late 2026)
+My professor at Cardiff gave me my first real opportunity — **curate a custom AI solution for him**. A WhatsApp RAG bot. A real project with a real client, not just tinkering.
+
+I used my **multi-agent system** to pull it off. Hermes coordinated. The agents ran inference. The pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. I learned more from that one project than from months of experimentation.
+
+Everything I'd built — the headless server, the Tailscale mesh, the custom skills, the Kanban boards — it all came together for a real deliverable.
+
+Then I discovered **Paperclip**. An open-source project that lets you run your multi-agent system as a **company** — with org charts, budgets, governance, agent roles, and goal alignment. You're not just dispatching tasks anymore. You're managing an AI workforce. Claude Code, Codex, Hermes, custom scripts — Paperclip organizes them into a functioning hierarchy.
+
+That's where I am now. Taking everything I've learned and scaling it into something structured, governed, and real.
 
 ## The Stack Today
 ```mermaid
@@ -154,8 +155,6 @@ graph TB
         KB[Kanban Board]
         OD[Odysseus :7000]
         NC[Nextcloud :8081]
-        WB[WhatBot v3.5]
-        WT[WhatBot Telegram]
         PR[Professor]
     end
     subgraph T[Tim · MacBook M2]
@@ -173,9 +172,7 @@ graph TB
     LLM --- HE
     LLM --- PI
     LLM --- OC
-    LLM --- WB
     LLM --- PR
-    VEC --- WB
     VEC --- PR
 ```
 
@@ -186,30 +183,22 @@ graph TB
 - **Ollama changes the game.** Pull any model by name, run it instantly.
 - **Try everything.** Llama, Mistral, Gemma, Qwen — each model family teaches you something different.
 - **Running two machines at once is fun.** Not always practical, but always exciting.
+- **Tailscale makes it mobile.** Your desktop's power, anywhere you go.
 - **SSH + Tailscale open every door.** Two machines feel like one.
+- **Headless is the way.** Disconnect the monitor, dedicate the GPU to inference.
 - **Multi-agent orchestration is real.** Kanban boards + dispatchers + worker profiles work.
+- **Custom skills change everything.** Once you can write your own, the possibilities multiply.
 - **Self-hosting is addictive.** Once you control everything, you don't want to go back.
-- **Bots multiply fast.** WhatBot v1 → v3.5, Professor, Telegram bot — all in a month.
 - **Voice changes everything.** Talking to your agent feels different than typing.
 - **Local AI is enough.** No cloud APIs needed when your GPU does the work.
-
-## What's Next
-## Phase 7: First Real Project & Paperclip (Late 2026)
-My professor at Cardiff gave me my first real opportunity — **curate a custom AI solution for him**. A WhatsApp RAG bot. A real project with a real client, not just tinkering.
-
-I used my **multi-agent system** to pull it off. Hermes coordinated. The agents ran inference. The pipeline handled embeddings and retrieval. It worked. It was the greatest experience of my life. I learned more from that one project than from months of experimentation.
-
-Everything I'd built — the headless server, the Tailscale mesh, the custom skills, the Kanban boards — it all came together for a real deliverable.
-
-Then I discovered **Paperclip**. An open-source project that lets you run your multi-agent system as a **company** — with org charts, budgets, governance, agent roles, and goal alignment. You're not just dispatching tasks anymore. You're managing an AI workforce. Claude Code, Codex, Hermes, custom scripts — Paperclip organizes them into a functioning hierarchy.
-
-That's where I am now. Taking everything I've learned and scaling it into something structured, governed, and real.
+- **Real projects teach the most.** One deliverable beats a hundred experiments.
 
 ## What's Next
 - Immich (photo management) — finally setting it up
 - SMB file sharing between machines
 - More n8n automation workflows
 - Agent-to-agent communication across Tim and Pandora
+- Paperclip integration — structured multi-agent company
 - Whatever I learn next
 
 ---
