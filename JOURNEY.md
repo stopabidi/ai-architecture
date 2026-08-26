@@ -174,6 +174,8 @@ Everything I'd built, the headless server, the Tailscale mesh, the custom skills
 
 My first project in the UK is now in demo mode. Built entirely on local AI, without spending any money on AI subscriptions, while keeping my data safe and private.
 
+And now I'm taking it further — **fine-tuning a custom model for AskJoe**. Using Easy Datasets to prepare the training data from Joe's consulting documents, then Unsloth Studio to fine-tune Gemma 4 E4B. The training runs on Pandora's GPU while the teacher model (Gemma 4 26B-A3B) runs on joeshomelab. Knowledge distillation across two machines, both local. Imagine if I'd hired someone to do this.
+
 ## The Stack Today
 ```mermaid
 graph TB

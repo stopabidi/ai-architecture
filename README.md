@@ -118,6 +118,7 @@ See **[JOURNEY.md](JOURNEY.md)** for the complete timeline, from running my firs
 - **February 2026** — Disconnected the monitor from the GPU. Turned Pandora into a headless AI server. All access via SSH over Tailscale.
 - **February to April 2026** — Hermes became the biggest milestone. Months learning agentic systems, custom skills, Claw Hub. Built autonomous multi-agent pipelines.
 - **March 2026** — Self-hosted services live (Nextcloud, Odysseus). First WhatsApp bot deployed.
-- **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now. Architecture docs rewritten. Full agent stack documented.
+- **August 2026** — AskJoe bot built for Professor Joe O'Mahoney. WhatsApp RAG bot answering questions from his published consulting work. In demo mode with the client now.
+- **September 2026** — Fine-tuning custom Gemma 4 E4B model for AskJoe using Unsloth Studio. Knowledge distillation: teacher model (Gemma 4 26B-A3B) on joeshomelab, training on Pandora. Zero cloud costs.
 
 *Started with a gaming PC, a scared student, and a question. Ended up here.*
